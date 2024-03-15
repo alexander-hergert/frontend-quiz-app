@@ -1,4 +1,4 @@
-import Link from "next/link";
+import QuizButtons from "@/components/QuizButtons";
 
 const Home = async () => {
   try {
@@ -17,21 +17,7 @@ const Home = async () => {
           </h1>
           <p>Pick a subject to get started.</p>
         </div>
-
-        <div>
-          <div>
-            <Link href="/html">To Html quiz!</Link>
-          </div>
-          <div>
-            <Link href="/css">To Css quiz!</Link>
-          </div>
-          <div>
-            <Link href="/javascript">To javascript quiz!</Link>
-          </div>
-          <div>
-            <Link href="/accessibility">To accessibility quiz!</Link>
-          </div>
-        </div>
+        <QuizButtons />
       </div>
     </>
   );
