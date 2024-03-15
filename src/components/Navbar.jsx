@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import sun from "/public/assets/images/icon-sun-light.svg";
 import moon from "/public/assets/images/icon-moon-light.svg";
@@ -10,6 +10,12 @@ const Navbar = () => {
   const htmlElement = document.querySelector("html");
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
+  //set theme on initial render
+  useEffect(() => {
+    htmlElement.dataset.theme = theme;
+  }, [theme]);
+
+  //toggle theme
   const toggleTheme = () => {
     if (theme === "light") {
       htmlElement.dataset.theme = "dark";
@@ -31,7 +37,12 @@ const Navbar = () => {
         ) : (
           <Image src={sun} alt="sun-icon" />
         )}
-        <input onChange={toggleTheme} type="checkbox" className="toggle" />
+        <input
+          onChange={toggleTheme}
+          type="checkbox"
+          className="toggle"
+          checked={theme === "dark" ? true : false}
+        />
         {theme === "light" ? (
           <Image src={darkMoon} alt="moon-icon" />
         ) : (
