@@ -10,11 +10,29 @@ const Home = async () => {
 
   return (
     <>
-      <h1>Homepage</h1>
-      <Link href="/html">To Html quiz!</Link>
-      <Link href="/css">To Css quiz!</Link>
-      <Link href="/javascript">To javascript quiz!</Link>
-      <Link href="/accessibility">To accessibility quiz!</Link>
+      <div className="flex gap-8 justify-between">
+        <div className="flex flex-col">
+          <h1 className="text-2xl">
+            Welcome to the <span>Frontend Quiz!</span>
+          </h1>
+          <p>Pick a subject to get started.</p>
+        </div>
+
+        <div>
+          <div>
+            <Link href="/html">To Html quiz!</Link>
+          </div>
+          <div>
+            <Link href="/css">To Css quiz!</Link>
+          </div>
+          <div>
+            <Link href="/javascript">To javascript quiz!</Link>
+          </div>
+          <div>
+            <Link href="/accessibility">To accessibility quiz!</Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

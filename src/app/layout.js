@@ -1,8 +1,5 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Frontend Quiz App",
@@ -12,8 +9,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <body className={inter.className}>
-        <main>
+      <body className="flex justify-center items-center">
+        <main className="p-12 w-[1200px]">
           <Navbar />
           {children}
         </main>
