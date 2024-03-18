@@ -2,19 +2,28 @@
 import React from "react";
 
 const HtmlQuiz = ({ questions }) => {
-
   return (
-    <div className="flex flex-col">
-      <div>
-        <div>QuestionNumber</div>
-        <div>Question</div>
-        <div>Progress</div>
-      </div>
-      <div className="flex flex-col">
-        <div>Answers</div>
-        <div>Submit</div>
-      </div>
-    </div>
+    <>
+      {questions.map((question, index) => (
+        <div key={index} className="flex gap-4 justify-between border">
+          <div>
+            <div>
+              Question {index + 1 + " / "} {questions.length}
+            </div>
+            <div>{question?.question}</div>
+            <div>Progress</div>
+          </div>
+          <form className="flex flex-col">
+            <ul>
+              {question?.options.map((option, index) => (
+                <li key={index}>{option}</li>
+              ))}
+            </ul>
+            <button>Submit</button>
+          </form>
+        </div>
+      ))}
+    </>
   );
 };
 
