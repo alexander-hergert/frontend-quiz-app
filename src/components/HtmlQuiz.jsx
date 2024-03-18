@@ -5,21 +5,39 @@ import Score from "./Score";
 const HtmlQuiz = ({ questions, icon }) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [answer, setAnswer] = useState("");
+  const [answerIndex, setAnswerIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [correctAnswer, setCorrectAnswer] = useState(questions[0].answer);
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+  console.log(answerIndex, correctAnswerIndex);
 
   const handleSubmit = (e) => {
-    console.log(answer, correctAnswer);
     e.preventDefault();
-    setCurrentQuestion(currentQuestion + 1);
-    if (currentQuestion < questions.length) {
-      setCorrectAnswer(questions[currentQuestion].answer);
-    }
+    setIsAnswerSubmitted(true);
+    checkAnswers(e);
+  };
+
+  const checkAnswers = (e) => {
+    setAnswerIndex(questions[currentQuestion - 1].options.indexOf(answer));
+    setCorrectAnswerIndex(
+      questions[currentQuestion - 1].options.indexOf(correctAnswer)
+    );
     if (answer === correctAnswer) {
       console.log("Correct");
       setScore(score + 1);
     } else {
       console.log("Incorrect");
+    }
+  };
+
+  const handleNextQuestion = (e) => {
+    e.preventDefault();
+    setIsAnswerSubmitted(false);
+    setAnswer("");
+    setCurrentQuestion(currentQuestion + 1);
+    if (currentQuestion < questions.length) {
+      setCorrectAnswer(questions[currentQuestion].answer);
     }
   };
 
@@ -44,8 +62,21 @@ const HtmlQuiz = ({ questions, icon }) => {
                 <form className="flex flex-col" onSubmit={handleSubmit}>
                   <ul>
                     {question?.options.map((option, optionIndex) => (
-                      <li key={optionIndex}>
+                      <li
+                        key={optionIndex}
+                        className={
+                          correctAnswerIndex === optionIndex &&
+                          isAnswerSubmitted
+                            ? "border border-green-500"
+                            : `${
+                                answerIndex === optionIndex && isAnswerSubmitted
+                                  ? "border border-red-500"
+                                  : ""
+                              }`
+                        }
+                      >
                         <input
+                          required
                           id={`question-${index}-${optionIndex}`}
                           type="radio"
                           name={`question-${index}`}
@@ -58,7 +89,17 @@ const HtmlQuiz = ({ questions, icon }) => {
                       </li>
                     ))}
                   </ul>
-                  <button className="btn">Submit</button>
+                  {!isAnswerSubmitted ? (
+                    <button className="btn">Submit</button>
+                  ) : (
+                    <button
+                      className="btn"
+                      type="button"
+                      onClick={(e) => handleNextQuestion(e)}
+                    >
+                      Next Question
+                    </button>
+                  )}
                 </form>
               </div>
             )
