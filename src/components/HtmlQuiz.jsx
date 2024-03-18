@@ -11,7 +11,11 @@ const HtmlQuiz = ({ questions }) => {
               Question {index + 1 + " / "} {questions.length}
             </div>
             <div>{question?.question}</div>
-            <div>Progress</div>
+            <progress
+              className="progress progress-primary w-56"
+              value={index + 1}
+              max="10"
+            ></progress>
           </div>
           <form className="flex flex-col">
             <ul>
