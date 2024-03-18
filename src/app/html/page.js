@@ -11,7 +11,10 @@ const htmlPage = async () => {
 
   return (
     <>
-      <HtmlQuiz questions={data?.quizzes?.[0].questions} />
+      <HtmlQuiz
+        questions={data?.quizzes?.[0].questions}
+        icon={data?.quizzes?.[0].icon}
+      />
     </>
   );
 };
