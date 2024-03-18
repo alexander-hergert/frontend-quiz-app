@@ -3,6 +3,23 @@ import React, { useState } from "react";
 
 const HtmlQuiz = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [answer, setAnswer] = useState("");
+  const [score, setScore] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState(questions[0].answer);
+
+  const handleSubmit = (e) => {
+    console.log(answer, correctAnswer);
+    e.preventDefault();
+    setCurrentQuestion(currentQuestion + 1);
+    setCorrectAnswer(questions[currentQuestion].answer);
+    if (answer === correctAnswer) {
+      console.log("Correct");
+      setScore(score + 1);
+    } else {
+      console.log("Incorrect");
+    }
+  };
+
   return (
     <>
       {questions.map(
@@ -15,12 +32,12 @@ const HtmlQuiz = ({ questions }) => {
                 </div>
                 <div>{question?.question}</div>
                 <progress
-                  className="progress progress-primary w-56"
+                  className="border-2 progress progress-primary w-56"
                   value={currentQuestion}
                   max="10"
                 ></progress>
               </div>
-              <form className="flex flex-col">
+              <form className="flex flex-col" onSubmit={handleSubmit}>
                 <ul>
                   {question?.options.map((option, optionIndex) => (
                     <li key={optionIndex}>
@@ -28,6 +45,8 @@ const HtmlQuiz = ({ questions }) => {
                         id={`question-${index}-${optionIndex}`}
                         type="radio"
                         name={`question-${index}`}
+                        value={option}
+                        onChange={(e) => setAnswer(e.target.value)}
                       />
                       <label htmlFor={`question-${index}-${optionIndex}`}>
                         {option}
@@ -35,12 +54,12 @@ const HtmlQuiz = ({ questions }) => {
                     </li>
                   ))}
                 </ul>
-                <button>Submit</button>
+                <button className="btn">Submit</button>
               </form>
             </div>
           )
       )}
-      <div>
+      {/* <div>
         <button
           className="btn"
           onClick={() => setCurrentQuestion(currentQuestion - 1)}
@@ -53,7 +72,7 @@ const HtmlQuiz = ({ questions }) => {
         >
           FORWARD
         </button>
-      </div>
+      </div> */}
     </>
   );
 };
