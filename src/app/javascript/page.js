@@ -1,7 +1,12 @@
-import React from "react";
+import Quiz from "@/components/Quiz";
+import data from "@/api/data.json";
 
 const JavascriptPage = () => {
-  return <div>Javascript</div>;
+  return (
+    <>
+      <Quiz data={data} />
+    </>
+  );
 };
 
 export default JavascriptPage;

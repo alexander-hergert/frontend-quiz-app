@@ -1,7 +1,12 @@
-import React from "react";
+import Quiz from "@/components/Quiz";
+import data from "@/api/data.json";
 
 const AccessibilityPage = () => {
-  return <div>Accessibility</div>;
+  return (
+    <>
+      <Quiz data={data} />
+    </>
+  );
 };
 
 export default AccessibilityPage;

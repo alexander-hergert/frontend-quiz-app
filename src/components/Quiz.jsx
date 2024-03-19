@@ -1,16 +1,46 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Score from "./Score";
 
-const HtmlQuiz = ({ questions, icon }) => {
+const Quiz = ({ data }) => {
+  const pathname = usePathname();
+  const [questions, setQuestions] = useState([]);
+  const [icon, setIcon] = useState("");
+  const [title, setTitle] = useState("");
+
+  //set questions and icon based on pathname
+  useEffect(() => {
+    if (pathname === "/html") {
+      setQuestions(data?.quizzes?.[0].questions);
+      setIcon(data?.quizzes?.[0].icon);
+      setTitle(data?.quizzes?.[0].title);
+      setCorrectAnswer(data?.quizzes?.[0].questions[0].answer);
+    } else if (pathname === "/css") {
+      setQuestions(data?.quizzes?.[1].questions);
+      setIcon(data?.quizzes?.[1].icon);
+      setTitle(data?.quizzes?.[1].title);
+      setCorrectAnswer(data?.quizzes?.[1].questions[0].answer);
+    } else if (pathname === "/javascript") {
+      setQuestions(data?.quizzes?.[2].questions);
+      setIcon(data?.quizzes?.[2].icon);
+      setTitle(data?.quizzes?.[2].title);
+      setCorrectAnswer(data?.quizzes?.[2].questions[0].answer);
+    } else if (pathname === "/accessibility") {
+      setQuestions(data?.quizzes?.[3].questions);
+      setIcon(data?.quizzes?.[3].icon);
+      setTitle(data?.quizzes?.[3].title);
+      setCorrectAnswer(data?.quizzes?.[3].questions[0].answer);
+    }
+  }, [pathname, data]);
+
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [answer, setAnswer] = useState("");
   const [answerIndex, setAnswerIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [correctAnswer, setCorrectAnswer] = useState(questions[0].answer);
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState();
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
-  console.log(answerIndex, correctAnswerIndex);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,11 +48,12 @@ const HtmlQuiz = ({ questions, icon }) => {
     checkAnswers(e);
   };
 
-  const checkAnswers = (e) => {
+  const checkAnswers = () => {
     setAnswerIndex(questions[currentQuestion - 1].options.indexOf(answer));
     setCorrectAnswerIndex(
       questions[currentQuestion - 1].options.indexOf(correctAnswer)
     );
+    console.log(answer, correctAnswer);
     if (answer === correctAnswer) {
       console.log("Correct");
       setScore(score + 1);
@@ -105,10 +136,10 @@ const HtmlQuiz = ({ questions, icon }) => {
             )
         )}
       {currentQuestion > questions.length && (
-        <Score score={score} icon={icon} />
+        <Score score={score} icon={icon} title={title} />
       )}
     </>
   );
 };
 
-export default HtmlQuiz;
+export default Quiz;

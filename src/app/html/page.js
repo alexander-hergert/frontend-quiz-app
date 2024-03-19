@@ -1,20 +1,10 @@
-import HtmlQuiz from "@/components/HtmlQuiz";
+import Quiz from "@/components/Quiz";
+import data from "@/api/data.json";
 
 const htmlPage = async () => {
-  let data;
-  try {
-    const response = await fetch("http://localhost:3000/api/data.json");
-    data = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
   return (
     <>
-      <HtmlQuiz
-        questions={data?.quizzes?.[0].questions}
-        icon={data?.quizzes?.[0].icon}
-      />
+      <Quiz data={data} />
     </>
   );
 };
