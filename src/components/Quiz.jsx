@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Score from "./Score";
+import { useRouter } from "next/navigation";
 
 const Quiz = ({ data }) => {
   const pathname = usePathname();
   const [questions, setQuestions] = useState([]);
   const [icon, setIcon] = useState("");
   const [title, setTitle] = useState("");
+  const router = useRouter();
 
   //set questions and icon based on pathname
   useEffect(() => {
@@ -31,6 +33,8 @@ const Quiz = ({ data }) => {
       setIcon(data?.quizzes?.[3].icon);
       setTitle(data?.quizzes?.[3].title);
       setCorrectAnswer(data?.quizzes?.[3].questions[0].answer);
+    } else {
+      router.push("/");
     }
   }, [pathname, data]);
 
