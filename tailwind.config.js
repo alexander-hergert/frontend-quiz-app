@@ -12,10 +12,37 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        "rubik-italic": ["Rubik-Italic", "sans-serif"],
+        "rubik-medium": ["Rubik-Medium", "sans-serif"],
+        "rubik-regular": ["Rubik-Regular", "sans-serif"],
+      },
+      backgroundColor: {
+        html: "rgb(254, 241, 232)",
+        css: "rgb(224, 253, 239)",
+        js: "rgb(235, 240, 255)",
+        accessibility: "rgb(246, 231, 255)",
+      },
+      textColor: {},
     },
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark"],
+    themes: [
+      {
+        light: {
+          primary: "rgb(255, 255, 255)",
+          secondary: "rgb(244, 246, 250)",
+          neutral: "rgb(0, 0, 0)",
+          accent: "rgb(98, 108, 127)",
+        },
+        dark: {
+          primary: "rgb(59, 77, 103)",
+          secondary: "rgb(49, 62, 81)",
+          neutral: "rgb(255, 255, 255)",
+          accent: "rgb(171, 193, 225)",
+        },
+      },
+    ],
   },
 };

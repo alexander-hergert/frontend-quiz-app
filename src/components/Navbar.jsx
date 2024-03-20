@@ -49,7 +49,7 @@ const Navbar = () => {
       {pathname === "/" && <div></div>}
       {pathname === "/html" && (
         <div className="flex gap-4 items-center">
-          <div className="bg-red-100 rounded p-1">
+          <div className="bg-html rounded p-1">
             <Image src={html} alt="html-icon" />
           </div>
           <h1 className="text-2xl">HTML</h1>
@@ -57,7 +57,7 @@ const Navbar = () => {
       )}
       {pathname === "/css" && (
         <div className="flex gap-4">
-          <div className="bg-blue-100 rounded p-1">
+          <div className="bg-css rounded p-1">
             <Image src={css} alt="css-icon" />
           </div>
           <h1 className="text-2xl">CSS</h1>
@@ -65,7 +65,7 @@ const Navbar = () => {
       )}
       {pathname === "/javascript" && (
         <div className="flex gap-4">
-          <div className="bg-yellow-100 rounded p-1">
+          <div className="bg-js rounded p-1">
             <Image src={js} alt="js-icon" />
           </div>
           <h1 className="text-2xl">Javascript</h1>
@@ -73,7 +73,7 @@ const Navbar = () => {
       )}
       {pathname === "/accessibility" && (
         <div className="flex gap-4">
-          <div className="bg-green-100 rounded p-1">
+          <div className="bg-accessibility rounded p-1">
             <Image src={accessibility} alt="accessibility-icon" />
           </div>
           <h1 className="text-2xl">Accessibility</h1>

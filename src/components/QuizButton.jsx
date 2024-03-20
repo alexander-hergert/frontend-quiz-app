@@ -10,10 +10,17 @@ const QuizButton = ({ link }) => {
   return (
     <div
       onClick={() => router.push(link?.path, { scroll: false })}
-      className="w-[200px]  border rounded-lg flex gap-4 items-center cursor-pointer hover:opacity-80 transition-opacity duration-300 ease-in-out"
+      className="bg-primary px-[20px] w-full h-[96px] rounded-[24px] flex gap-4 items-center cursor-pointer"
     >
-      <Image src={link?.picture} alt={link?.text} />
-      <Link href={link?.path}>{link?.text}</Link>
+      <div
+        className={`w-[56px] h-[56px] flex items-center justify-center rounded-[8px] ${link?.color}`}
+      >
+        <Image src={link?.picture} alt={link?.text} width={40} height={40} />
+      </div>
+
+      <Link href={link?.path} className="text-2xl">
+        {link?.text}
+      </Link>
     </div>
   );
 };

@@ -7,22 +7,28 @@ import picAccessibility from "/public/assets/images/icon-accessibility.svg";
 
 const QuizButtons = () => {
   const link = [
-    { path: "/html", text: "HTML", picture: picHtml },
-    { path: "/css", text: "CSS", picture: picCss },
-    { path: "/javascript", text: "Javascript", picture: picJs },
+    { path: "/html", text: "HTML", picture: picHtml, color: "bg-html" },
+    { path: "/css", text: "CSS", picture: picCss, color: "bg-css" },
+    {
+      path: "/javascript",
+      text: "Javascript",
+      picture: picJs,
+      color: "bg-js",
+    },
     {
       path: "/accessibility",
       text: "Accessibility",
       picture: picAccessibility,
+      color: "bg-accessibility",
     },
   ];
 
   return (
-    <div>
+    <article className="w-[564px] flex flex-col gap-[24px]">
       {link.map((link, index) => {
         return <QuizButton key={index} link={link} />;
       })}
-    </div>
+    </article>
   );
 };
 

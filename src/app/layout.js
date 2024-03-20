@@ -7,12 +7,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
-    <html lang="en" data-theme={"light"}>
-      <body className="flex justify-center items-center">
-        <main className="p-12 w-[1200px]">
-          <Navbar />
+    <html lang="en" data-theme={"light"} className="bg-secondary">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head>
+      <body>
+        <Navbar />
+        <main className="flex min-h-[100vh] justify-center items-center">
           {children}
         </main>
       </body>
