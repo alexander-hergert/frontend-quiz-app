@@ -24,7 +24,7 @@ const QuizButtons = () => {
   ];
 
   return (
-    <article className="w-[564px] flex flex-col gap-[24px]">
+    <article className="w-[564px] flex flex-col gap-[24px] text-neutral">
       {link.map((link, index) => {
         return <QuizButton key={index} link={link} />;
       })}

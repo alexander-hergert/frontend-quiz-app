@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between">
+    <nav className="flex justify-between py-[98px] w-[1160px]">
       {/* Add the quiz buttons here */}
       {pathname === "/" && <div></div>}
       {pathname === "/html" && (
@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
       )}
       {pathname === "/css" && (
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           <div className="bg-css rounded p-1">
             <Image src={css} alt="css-icon" />
           </div>
@@ -64,7 +64,7 @@ const Navbar = () => {
         </div>
       )}
       {pathname === "/javascript" && (
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           <div className="bg-js rounded p-1">
             <Image src={js} alt="js-icon" />
           </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
         </div>
       )}
       {pathname === "/accessibility" && (
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           <div className="bg-accessibility rounded p-1">
             <Image src={accessibility} alt="accessibility-icon" />
           </div>
@@ -89,7 +89,7 @@ const Navbar = () => {
         <input
           onChange={toggleTheme}
           type="checkbox"
-          className="toggle"
+          className="w-[48px] h-[28px] border-none cursor-pointer"
           checked={storedTheme === "dark" ? true : false}
         />
         {theme === "light" ? (

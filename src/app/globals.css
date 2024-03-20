@@ -24,3 +24,38 @@
     text-wrap: balance;
   }
 }
+
+nav input::before {
+  display: block;
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 28px;
+  background-color: rgb(167, 41, 245);
+  z-index: 1;
+  border-radius: 999px;
+}
+
+nav input::after {
+  display: block;
+  content: "";
+  position: relative;
+  top: -24px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  z-index: 2;
+  border-radius: 999px;
+  transition: left 0.3s ease;
+}
+
+nav input:checked::after {
+  left: 24px;
+}
+
+.text-shadow {
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}

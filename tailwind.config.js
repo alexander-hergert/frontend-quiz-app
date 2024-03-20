@@ -22,6 +22,7 @@ module.exports = {
         css: "rgb(224, 253, 239)",
         js: "rgb(235, 240, 255)",
         accessibility: "rgb(246, 231, 255)",
+        nav: "rgb(167, 41, 245)",
       },
       textColor: {},
     },
