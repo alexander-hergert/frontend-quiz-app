@@ -79,7 +79,7 @@ const Quiz = ({ data }) => {
   return (
     <section
       className="flex max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-wrap xl:w-[1160px] max-md:h-[457px] 
-        md:h-[638px] xl:h-[456px] md:gap-[64px] xl:gap-[140px] text-neutral"
+        md:h-[822px] xl:h-[456px] md:gap-[64px] xl:gap-[140px] text-neutral"
     >
       {currentQuestion <= questions.length &&
         questions.map(
@@ -87,26 +87,28 @@ const Quiz = ({ data }) => {
             currentQuestion === index + 1 && (
               <article
                 key={index}
-                className="flex w-full gap-4 justify-between"
+                className="flex max-xl:flex-col w-full max-md:gap-0 gap-[64px] xl:gap-4 xl:justify-between"
               >
-                <div className="flex flex-col justify-between w-[465px] h-[452px]">
-                  <div>
-                    <p className="text-gray mb-[27px] text-xl">
+                <div className="flex flex-col xl:justify-between md:w-[640px] xl:w-[465px] h-[242px] xl:h-[452px] gap-[40px]">
+                  <div className="max-md:h-[129px] h-[186px] flex flex-col">
+                    <p className="text-gray mb-[27px] text-xl h-[129px]">
                       Question {currentQuestion} of {questions.length}
                     </p>
-                    <p className="text-[2rem]">{question?.question}</p>
+                    <p className="text-[2rem] max-md:text-xl">
+                      {question?.question}
+                    </p>
                   </div>
                   <progress
-                    className="progress progress-info border-4 bg-primary border-primary w-[465px] h-[16px]"
-                    value={currentQuestion}
+                    className="progress progress-info border-4 bg-primary border-primary max-md:w-[327px] md:w-[640px] xl:w-[465px] h-[16px]"
+                    value={currentQuestion - 1}
                     max="10"
                   ></progress>
                 </div>
                 <form
-                  className="flex flex-col w-[564px] h-[440px]"
+                  className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] h-[440px]"
                   onSubmit={handleSubmit}
                 >
-                  <ul className="flex flex-col gap-[24px] w-[564px] mb-[32px]">
+                  <ul className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
                     {question?.options.map((option, optionIndex) => (
                       <label
                         className="cursor-pointer"
@@ -122,7 +124,7 @@ const Quiz = ({ data }) => {
                                   answerIndex === optionIndex &&
                                   isAnswerSubmitted
                                     ? "border border-red-500"
-                                    : "bg-primary h-[92px] rounded-[24px] flex gap-[32px] pl-[20px]"
+                                    : "bg-primary max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex gap-[32px] pl-[20px] w-full"
                                 }`
                           }
                         >
@@ -136,7 +138,7 @@ const Quiz = ({ data }) => {
                             onChange={(e) => setAnswer(e.target.value)}
                           />
                           <div
-                            className="flex justify-center items-center w-[56px] h-[56px] bg-gray
+                            className="flex justify-center items-center max-md:w-[40px] max-md:h-[40px] w-[56px] h-[56px] bg-gray
                            self-center text-xl rounded-[8px] text-black"
                           >
                             {optionIndex === 0
@@ -147,18 +149,20 @@ const Quiz = ({ data }) => {
                               ? "C"
                               : "D"}
                           </div>
-                          <span className="self-center text-xl">{option}</span>
+                          <span className="self-center text-xl max-md:text-sm">
+                            {option}
+                          </span>
                         </li>
                       </label>
                     ))}
                   </ul>
                   {!isAnswerSubmitted ? (
-                    <button className="btn h-[92px] rounded-[24px] text-xl text-white border-none bg-nav">
+                    <button className="btn max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav">
                       Submit Answer
                     </button>
                   ) : (
                     <button
-                      className="btn h-[92px] rounded-[24px] text-xl text-white border-none bg-nav"
+                      className="btn max-md:h-[56px] h-[92px] w-full rounded-[24px] first:text-xl text-white border-none bg-nav"
                       type="button"
                       onClick={(e) => handleNextQuestion(e)}
                     >

@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="flex flex-col justify-center items-center min-h-[100vh]">
         <Navbar />
-        <main className="min-h-[100vh] max-md:mb-12">{children}</main>
+        <main className="min-h-[100vh] max-xl:mb-12">{children}</main>
       </body>
     </html>
   );
