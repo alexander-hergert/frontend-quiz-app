@@ -13,20 +13,19 @@ import accessibility from "/public/assets/images/icon-accessibility.svg";
 
 const Navbar = () => {
   let htmlElement;
-  let storedTheme;
+  const [theme, setTheme] = useState("light");
 
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
-    storedTheme = localStorage.getItem("theme");
   }
 
-  const [theme, setTheme] = useState(storedTheme || "light");
   const pathname = usePathname();
 
   //set theme on initial render
   useEffect(() => {
     if (htmlElement) {
       htmlElement.dataset.theme = theme;
+      setTheme(localStorage.getItem("theme"));
     }
   }, [theme]);
 
@@ -90,7 +89,7 @@ const Navbar = () => {
           onChange={toggleTheme}
           type="checkbox"
           className="w-[48px] h-[28px] border-none cursor-pointer"
-          checked={storedTheme === "dark" ? true : false}
+          checked={theme === "dark" ? true : false}
         />
         {theme === "light" ? (
           <Image src={darkMoon} alt="moon-icon" />
