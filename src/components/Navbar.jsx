@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <nav
       className="flex justify-between max-ms:mb-[32px] max-md:py-[26px] md:py-[52px] xl:py-[98px] max-md:w-[327px] 
-    md:w-[640px] xl:w-[1160px]"
+    md:w-[640px] xl:w-[1160px] text-neutral"
     >
       {/* Add the quiz buttons here */}
       {pathname === "/" && <div></div>}
