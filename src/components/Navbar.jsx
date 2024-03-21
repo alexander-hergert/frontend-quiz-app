@@ -43,7 +43,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between py-[98px] w-[1160px]">
+    <nav
+      className="flex justify-between max-ms:mb-[32px] max-md:py-[26px] md:py-[52px] xl:py-[98px] max-md:w-[327px] 
+    md:w-[640px] xl:w-[1160px]"
+    >
       {/* Add the quiz buttons here */}
       {pathname === "/" && <div></div>}
       {pathname === "/html" && (

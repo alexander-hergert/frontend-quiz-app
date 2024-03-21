@@ -13,9 +13,9 @@ export default function RootLayout({ children }) {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </head>
-      <body className="flex flex-col justify-center items-center">
+      <body className="flex flex-col justify-center items-center min-h-[100vh]">
         <Navbar />
-        <main>{children}</main>
+        <main className="min-h-[100vh] max-md:mb-12">{children}</main>
       </body>
     </html>
   );
