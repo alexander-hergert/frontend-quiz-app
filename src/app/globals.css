@@ -60,10 +60,12 @@ nav input:checked::after {
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-body{
+body {
   /* center the background image */
   background-position: center;
   background-size: cover;
+  /* boxmodel */
+  box-sizing: border-box;
 }
 
 /* desktop */

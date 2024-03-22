@@ -28,6 +28,10 @@ module.exports = {
       textColor: {
         gray: "rgb(171, 193, 225)",
       },
+      borderColor: {
+        green: "rgb(58, 215, 131)",
+        red: "rgb(238, 84, 84)",
+      },
     },
   },
   plugins: [require("daisyui")],

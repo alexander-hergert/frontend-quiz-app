@@ -1,8 +1,12 @@
 "use client";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Score from "./Score";
 import { useRouter } from "next/navigation";
+import correct from "/public/assets/images/icon-correct.svg";
+import incorrect from "/public/assets/images/icon-incorrect.svg";
+import error from "/public/assets/images/icon-error.svg";
 
 const Quiz = ({ data }) => {
   const pathname = usePathname();
@@ -40,16 +44,39 @@ const Quiz = ({ data }) => {
 
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [answer, setAnswer] = useState("");
-  const [answerIndex, setAnswerIndex] = useState(0);
+  const [answerIndex, setAnswerIndex] = useState(null);
   const [score, setScore] = useState(0);
   const [correctAnswer, setCorrectAnswer] = useState("");
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState();
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsAnswerSubmitted(true);
     checkAnswers(e);
+  };
+
+  const selectAnswerStyle = (target) => {
+    //li element
+    const parent = target.parentElement.parentElement;
+    parent.classList.add("border-2", "border-info");
+    //remove styles for other list items
+    const listItems = document.querySelectorAll("li");
+    listItems.forEach((item) => {
+      if (item !== parent) {
+        item.classList.remove("border-2", "border-info");
+      }
+    });
+    //div sibling
+    const div = target.nextElementSibling;
+    div.classList.add("bg-info", "text-white");
+    //remove styles for other divs
+    const divs = document.querySelectorAll("div");
+    divs.forEach((div) => {
+      if (div !== target.nextElementSibling) {
+        div.classList.remove("bg-info", "text-white");
+      }
+    });
   };
 
   const checkAnswers = () => {
@@ -116,53 +143,85 @@ const Quiz = ({ data }) => {
                         key={optionIndex}
                       >
                         <li
+                          onClick={() => {
+                            if (isAnswerSubmitted) return;
+                            setAnswerIndex(optionIndex);
+                          }}
                           className={
-                            correctAnswerIndex === optionIndex &&
-                            isAnswerSubmitted
-                              ? "border border-green-500"
+                            answerIndex === correctAnswerIndex &&
+                            isAnswerSubmitted &&
+                            answerIndex === optionIndex
+                              ? "border-2 border-green max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
                               : `${
                                   answerIndex === optionIndex &&
                                   isAnswerSubmitted
-                                    ? "border border-red-500"
-                                    : "bg-primary max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex gap-[32px] pl-[20px] w-full"
+                                    ? "border-2 border-red max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                                    : `bg-primary max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full
+                                    group`
                                 }`
                           }
                         >
-                          <input
-                            className="hidden"
-                            required
-                            id={`question-${index}-${optionIndex}`}
-                            type="radio"
-                            name={`question-${index}`}
-                            value={option}
-                            onChange={(e) => setAnswer(e.target.value)}
-                          />
-                          <div
-                            className="flex justify-center items-center max-md:w-[40px] max-md:h-[40px] w-[56px] h-[56px] bg-gray
-                           self-center text-xl rounded-[8px] text-black"
-                          >
-                            {optionIndex === 0
-                              ? "A"
-                              : optionIndex === 1
-                              ? "B"
-                              : optionIndex === 2
-                              ? "C"
-                              : "D"}
+                          <div className="flex gap-6">
+                            <input
+                              className="hidden"
+                              required
+                              id={`question-${index}-${optionIndex}`}
+                              type="radio"
+                              name={`question-${index}`}
+                              value={option}
+                              onChange={(e) => {
+                                if (isAnswerSubmitted) return;
+                                setAnswer(e.target.value);
+                                selectAnswerStyle(e.target);
+                              }}
+                            />
+                            <div
+                              className={`flex justify-center items-center max-md:w-[40px] max-md:h-[40px] w-[56px] h-[56px] bg-gray
+                           self-center text-xl rounded-[8px] text-black  ${
+                             answerIndex !== optionIndex
+                               ? "group-hover:bg-[#f6e7ff] group-hover:text-info"
+                               : ""
+                           } `}
+                            >
+                              {optionIndex === 0
+                                ? "A"
+                                : optionIndex === 1
+                                ? "B"
+                                : optionIndex === 2
+                                ? "C"
+                                : "D"}
+                            </div>
+                            <span className="self-center text-xl max-md:text-sm">
+                              {option}
+                            </span>
                           </div>
-                          <span className="self-center text-xl max-md:text-sm">
-                            {option}
-                          </span>
+                          <div className="mr-4 self-center">
+                            {answerIndex === correctAnswerIndex &&
+                            isAnswerSubmitted &&
+                            answerIndex === optionIndex ? (
+                              <Image src={correct} alt="icon" />
+                            ) : answerIndex !== correctAnswerIndex &&
+                              isAnswerSubmitted &&
+                              answerIndex === optionIndex ? (
+                              <Image src={incorrect} alt="icon" />
+                            ) : correctAnswerIndex === optionIndex &&
+                              isAnswerSubmitted ? (
+                              <Image src={correct} alt="icon" />
+                            ) : (
+                              ""
+                            )}
+                          </div>
                         </li>
                       </label>
                     ))}
                   </ul>
                   {!isAnswerSubmitted ? (
-                    <button className="btn max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav">
+                    <button className="btn hover:bg-[#d394fa] max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav">
                       Submit Answer
                     </button>
                   ) : (
                     <button
-                      className="btn max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav"
+                      className="btn hover:bg-[#d394fa] max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav"
                       type="button"
                       onClick={(e) => handleNextQuestion(e)}
                     >
