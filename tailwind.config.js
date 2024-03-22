@@ -24,6 +24,8 @@ module.exports = {
         accessibility: "rgb(246, 231, 255)",
         nav: "rgb(167, 41, 245)",
         gray: "rgb(244, 246, 250)",
+        green: "rgb(58, 215, 131)",
+        red: "rgb(238, 84, 84)",
       },
       textColor: {
         gray: "rgb(171, 193, 225)",

@@ -151,11 +151,11 @@ const Quiz = ({ data }) => {
                             answerIndex === correctAnswerIndex &&
                             isAnswerSubmitted &&
                             answerIndex === optionIndex
-                              ? "border-2 border-green max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                              ? "border-2 bg-primary border-green max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
                               : `${
                                   answerIndex === optionIndex &&
                                   isAnswerSubmitted
-                                    ? "border-2 border-red max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                                    ? "border-2 bg-primary border-red max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
                                     : `bg-primary max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full
                                     group`
                                 }`
@@ -180,6 +180,12 @@ const Quiz = ({ data }) => {
                            self-center text-xl rounded-[8px] text-black  ${
                              answerIndex !== optionIndex
                                ? "group-hover:bg-[#f6e7ff] group-hover:text-info"
+                               : correctAnswerIndex === optionIndex &&
+                                 isAnswerSubmitted
+                               ? "bg-green text-white"
+                               : correctAnswerIndex !== optionIndex &&
+                                 isAnswerSubmitted
+                               ? "bg-red text-white"
                                : ""
                            } `}
                             >
