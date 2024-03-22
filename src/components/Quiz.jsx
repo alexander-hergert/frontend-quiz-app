@@ -162,7 +162,7 @@ const Quiz = ({ data }) => {
                     </button>
                   ) : (
                     <button
-                      className="btn max-md:h-[56px] h-[92px] w-full rounded-[24px] first:text-xl text-white border-none bg-nav"
+                      className="btn max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav"
                       type="button"
                       onClick={(e) => handleNextQuestion(e)}
                     >
