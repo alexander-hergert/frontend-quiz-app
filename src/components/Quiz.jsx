@@ -113,9 +113,9 @@ const Quiz = ({ data }) => {
                       <label
                         className="cursor-pointer"
                         htmlFor={`question-${index}-${optionIndex}`}
+                        key={optionIndex}
                       >
                         <li
-                          key={optionIndex}
                           className={
                             correctAnswerIndex === optionIndex &&
                             isAnswerSubmitted

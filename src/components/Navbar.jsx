@@ -11,10 +11,9 @@ import css from "/public/assets/images/icon-css.svg";
 import js from "/public/assets/images/icon-js.svg";
 import accessibility from "/public/assets/images/icon-accessibility.svg";
 
-const Navbar = () => {
-  let htmlElement;
-  const [theme, setTheme] = useState("light");
+const Navbar = ({theme, setTheme}) => {
 
+  let htmlElement;
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
   }
