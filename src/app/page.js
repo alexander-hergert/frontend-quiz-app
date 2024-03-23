@@ -1,4 +1,5 @@
 import QuizButtons from "@/components/QuizButtons";
+import Settings from "@/components/Settings";
 
 const Home = async () => {
   return (
@@ -18,6 +19,7 @@ const Home = async () => {
         </article>
         <QuizButtons />
       </section>
+      <Settings />
     </>
   );
 };

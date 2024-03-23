@@ -2,6 +2,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
+import GlobalContext from "@/context/globalContext";
 
 const metadata = {
   title: "Frontend Quiz App",
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
   }
 
   const [theme, setTheme] = useState("light");
+  const [isShuffle, setIsShuffle] = useState(false);
 
   return (
     <html lang="en" data-theme={"light"} className="bg-secondary">
@@ -27,8 +29,10 @@ export default function RootLayout({ children }) {
         ${theme === "dark" ? "d-bg-d t-bg-d m-bg-d" : "d-bg-l t-bg-l m-bg-l"}
       `}
       >
-        <Navbar theme={theme} setTheme={setTheme} />
-        <main className="min-h-[100vh] max-xl:mb-12">{children}</main>
+        <GlobalContext.Provider value={{ isShuffle, setIsShuffle }}>
+          <Navbar theme={theme} setTheme={setTheme} />
+          <main className="min-h-[100vh] max-xl:mb-12">{children}</main>
+        </GlobalContext.Provider>
       </body>
     </html>
   );

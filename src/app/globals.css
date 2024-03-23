@@ -25,7 +25,8 @@
   }
 }
 
-nav input::before {
+nav input::before,
+.settings input::before {
   display: block;
   content: "";
   position: relative;
@@ -38,7 +39,8 @@ nav input::before {
   border-radius: 999px;
 }
 
-nav input::after {
+nav input::after,
+.settings input::after {
   display: block;
   content: "";
   position: relative;
@@ -52,7 +54,8 @@ nav input::after {
   transition: left 0.3s ease;
 }
 
-nav input:checked::after {
+nav input:checked::after,
+.settings input:checked::after {
   left: 24px;
 }
 

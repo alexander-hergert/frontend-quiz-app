@@ -7,8 +7,11 @@ import { useRouter } from "next/navigation";
 import correct from "/public/assets/images/icon-correct.svg";
 import incorrect from "/public/assets/images/icon-incorrect.svg";
 import error from "/public/assets/images/icon-error.svg";
+import { useContext } from "react";
+import GlobalContext from "@/context/globalContext";
 
 const Quiz = ({ data }) => {
+  const { isShuffle } = useContext(GlobalContext);
   const pathname = usePathname();
   const [questions, setQuestions] = useState([]);
   const [icon, setIcon] = useState("");
