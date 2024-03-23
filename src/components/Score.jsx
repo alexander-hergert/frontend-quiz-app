@@ -7,7 +7,7 @@ const Score = ({ score, icon, title }) => {
     bgColor = "bg-html";
   } else if (title === "CSS") {
     bgColor = "bg-css";
-  } else if (title === "Javascript") {
+  } else if (title === "JavaScript") {
     bgColor = "bg-js";
   } else if (title === "Accessibility") {
     bgColor = "bg-accessibility";

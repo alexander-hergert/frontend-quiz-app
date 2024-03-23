@@ -46,6 +46,7 @@ module.exports = {
           neutral: "rgb(0, 0, 0)",
           accent: "rgb(98, 108, 127)",
           info: "rgb(167, 41, 245)",
+          error: "rgb(238, 84, 84)",
         },
         dark: {
           primary: "rgb(59, 77, 103)",
@@ -53,6 +54,7 @@ module.exports = {
           neutral: "rgb(255, 255, 255)",
           accent: "rgb(171, 193, 225)",
           info: "rgb(167, 41, 245)",
+          error: "rgb(255, 255, 255)",
         },
       },
     ],

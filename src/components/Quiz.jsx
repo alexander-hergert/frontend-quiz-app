@@ -49,9 +49,16 @@ const Quiz = ({ data }) => {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!answer) {
+      console.log(answer);
+      setIsError(true);
+      return;
+    }
+    setIsError(false);
     setIsAnswerSubmitted(true);
     checkAnswers(e);
   };
@@ -133,7 +140,7 @@ const Quiz = ({ data }) => {
                 </div>
                 <form
                   className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] h-[440px]"
-                  onSubmit={handleSubmit}
+                  onSubmit={(e) => handleSubmit(e)}
                 >
                   <ul className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
                     {question?.options.map((option, optionIndex) => (
@@ -164,7 +171,6 @@ const Quiz = ({ data }) => {
                           <div className="flex gap-6">
                             <input
                               className="hidden"
-                              required
                               id={`question-${index}-${optionIndex}`}
                               type="radio"
                               name={`question-${index}`}
@@ -233,6 +239,12 @@ const Quiz = ({ data }) => {
                     >
                       Next Question
                     </button>
+                  )}
+                  {isError && (
+                    <div className="flex gap-4 items-center mt-4 justify-center">
+                      <Image src={error} alt="Please select an answer" />
+                      <p className="text-error">Please select an answer</p>
+                    </div>
                   )}
                 </form>
               </article>
