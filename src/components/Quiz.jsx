@@ -22,19 +22,51 @@ const Quiz = ({ data }) => {
   //set questions and icon based on pathname
   useEffect(() => {
     if (pathname === "/html") {
-      setQuestions(shuffleArray(data?.quizzes?.[0].questions, isShuffle));
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[0].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[0].icon);
       setTitle(data?.quizzes?.[0].title);
     } else if (pathname === "/css") {
-      setQuestions(shuffleArray(data?.quizzes?.[1].questions, isShuffle));
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[1].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[1].icon);
       setTitle(data?.quizzes?.[1].title);
     } else if (pathname === "/javascript") {
-      setQuestions(shuffleArray(data?.quizzes?.[2].questions, isShuffle));
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[2].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[2].icon);
       setTitle(data?.quizzes?.[2].title);
     } else if (pathname === "/accessibility") {
-      setQuestions(shuffleArray(data?.quizzes?.[3].questions, isShuffle));
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[3].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[3].icon);
       setTitle(data?.quizzes?.[3].title);
     } else {
@@ -97,12 +129,10 @@ const Quiz = ({ data }) => {
     setCorrectAnswerIndex(
       questions[currentQuestion - 1].options.indexOf(correctAnswer)
     );
-    console.log(answer, correctAnswer);
     if (answer === correctAnswer) {
       console.log("Correct");
       setScore(score + 1);
     } else {
-      console.log("Incorrect");
     }
   };
 

@@ -11,12 +11,15 @@ const metadata = {
 
 export default function RootLayout({ children }) {
   let htmlElement;
+  let shuffle = false;
+
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
+    shuffle = localStorage.getItem("isShuffle");
   }
 
   const [theme, setTheme] = useState("light");
-  const [isShuffle, setIsShuffle] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(shuffle);
 
   return (
     <html lang="en" data-theme={"light"} className="bg-secondary">

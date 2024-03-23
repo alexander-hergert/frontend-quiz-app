@@ -11,9 +11,13 @@ const Settings = () => {
       <div className="flex gap-4 mt-4">
         <p>Shuffle mode</p>
         <input
-          onChange={() => setIsShuffle(!isShuffle)}
+          onChange={() => {
+            setIsShuffle(!isShuffle);
+            localStorage.setItem("isShuffle", !isShuffle);
+          }}
           type="checkbox"
           className="w-[48px] h-[28px] border-none cursor-pointer"
+          checked={Boolean(isShuffle)}
         />
       </div>
     </section>
