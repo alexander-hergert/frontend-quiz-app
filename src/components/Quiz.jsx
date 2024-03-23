@@ -9,6 +9,7 @@ import incorrect from "/public/assets/images/icon-incorrect.svg";
 import error from "/public/assets/images/icon-error.svg";
 import { useContext } from "react";
 import GlobalContext from "@/context/globalContext";
+import { shuffleArray } from "@/app/utils/utils";
 
 const Quiz = ({ data }) => {
   const { isShuffle } = useContext(GlobalContext);
@@ -21,25 +22,21 @@ const Quiz = ({ data }) => {
   //set questions and icon based on pathname
   useEffect(() => {
     if (pathname === "/html") {
-      setQuestions(data?.quizzes?.[0].questions);
+      setQuestions(shuffleArray(data?.quizzes?.[0].questions, isShuffle));
       setIcon(data?.quizzes?.[0].icon);
       setTitle(data?.quizzes?.[0].title);
-      setCorrectAnswer(data?.quizzes?.[0].questions[0].answer);
     } else if (pathname === "/css") {
-      setQuestions(data?.quizzes?.[1].questions);
+      setQuestions(shuffleArray(data?.quizzes?.[1].questions, isShuffle));
       setIcon(data?.quizzes?.[1].icon);
       setTitle(data?.quizzes?.[1].title);
-      setCorrectAnswer(data?.quizzes?.[1].questions[0].answer);
     } else if (pathname === "/javascript") {
-      setQuestions(data?.quizzes?.[2].questions);
+      setQuestions(shuffleArray(data?.quizzes?.[2].questions, isShuffle));
       setIcon(data?.quizzes?.[2].icon);
       setTitle(data?.quizzes?.[2].title);
-      setCorrectAnswer(data?.quizzes?.[2].questions[0].answer);
     } else if (pathname === "/accessibility") {
-      setQuestions(data?.quizzes?.[3].questions);
+      setQuestions(shuffleArray(data?.quizzes?.[3].questions, isShuffle));
       setIcon(data?.quizzes?.[3].icon);
       setTitle(data?.quizzes?.[3].title);
-      setCorrectAnswer(data?.quizzes?.[3].questions[0].answer);
     } else {
       router.push("/");
     }
@@ -53,6 +50,12 @@ const Quiz = ({ data }) => {
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      setCorrectAnswer(questions[currentQuestion - 1]?.answer);
+    }
+  }, [questions, currentQuestion]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
