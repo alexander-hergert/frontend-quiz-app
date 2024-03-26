@@ -11,6 +11,14 @@ const Score = ({ score, icon, title }) => {
     bgColor = "bg-js";
   } else if (title === "Accessibility") {
     bgColor = "bg-accessibility";
+  } else if (title === "React") {
+    bgColor = "bg-react";
+  } else if (title === "Node.js") {
+    bgColor = "bg-nodejs";
+  } else if (title === "SQL") {
+    bgColor = "bg-sql";
+  } else if (title === "Git / Bash") {
+    bgColor = "bg-git";
   }
 
   return (
@@ -38,7 +46,8 @@ const Score = ({ score, icon, title }) => {
         </div>
         <Link
           href={"/"}
-          className="btn max-md:h-[56px] h-[92px] w-full max-md:rounded-[12px] xl:rounded-[24px] text-xl text-white border-none bg-nav"
+          className="btn max-md:h-[56px] h-[92px] w-full max-md:rounded-[12px] xl:rounded-[24px] text-xl
+           text-white border-none bg-nav hover:bg-[#d394fa]"
         >
           Play Again
         </Link>

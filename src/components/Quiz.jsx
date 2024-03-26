@@ -69,6 +69,54 @@ const Quiz = ({ data }) => {
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[3].icon);
       setTitle(data?.quizzes?.[3].title);
+    } else if (pathname === "/react") {
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[4].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
+      setIcon(data?.quizzes?.[4].icon);
+      setTitle(data?.quizzes?.[4].title);
+    } else if (pathname === "/nodejs") {
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[5].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
+      setIcon(data?.quizzes?.[5].icon);
+      setTitle(data?.quizzes?.[5].title);
+    } else if (pathname === "/sql") {
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[6].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
+      setIcon(data?.quizzes?.[6].icon);
+      setTitle(data?.quizzes?.[6].title);
+    } else if (pathname === "/git") {
+      const shuffledArray = shuffleArray(
+        shuffleArray(data?.quizzes?.[7].questions, isShuffle).map(
+          (question) => {
+            const shuffledOptions = shuffleArray(question.options, isShuffle);
+            return { ...question, options: shuffledOptions };
+          }
+        )
+      );
+      setQuestions(shuffledArray);
+      setIcon(data?.quizzes?.[7].icon);
+      setTitle(data?.quizzes?.[7].title);
     } else {
       router.push("/");
     }
