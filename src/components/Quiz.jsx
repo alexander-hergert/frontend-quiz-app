@@ -12,7 +12,7 @@ import GlobalContext from "@/context/globalContext";
 import { shuffleArray } from "@/app/utils/utils";
 
 const Quiz = ({ data }) => {
-  const { isShuffle } = useContext(GlobalContext);
+  const { isShuffle, numberOfQuestions } = useContext(GlobalContext);
   const pathname = usePathname();
   const [questions, setQuestions] = useState([]);
   const [icon, setIcon] = useState("");
@@ -23,96 +23,112 @@ const Quiz = ({ data }) => {
   useEffect(() => {
     if (pathname === "/html") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[0].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[0].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[0].icon);
       setTitle(data?.quizzes?.[0].title);
     } else if (pathname === "/css") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[1].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[1].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[1].icon);
       setTitle(data?.quizzes?.[1].title);
     } else if (pathname === "/javascript") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[2].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[2].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[2].icon);
       setTitle(data?.quizzes?.[2].title);
     } else if (pathname === "/accessibility") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[3].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[3].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[3].icon);
       setTitle(data?.quizzes?.[3].title);
     } else if (pathname === "/react") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[4].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[4].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[4].icon);
       setTitle(data?.quizzes?.[4].title);
     } else if (pathname === "/nodejs") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[5].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[5].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[5].icon);
       setTitle(data?.quizzes?.[5].title);
     } else if (pathname === "/sql") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[6].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[6].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[6].icon);
       setTitle(data?.quizzes?.[6].title);
     } else if (pathname === "/git") {
       const shuffledArray = shuffleArray(
-        shuffleArray(data?.quizzes?.[7].questions, isShuffle).map(
-          (question) => {
-            const shuffledOptions = shuffleArray(question.options, isShuffle);
-            return { ...question, options: shuffledOptions };
-          }
-        )
+        shuffleArray(
+          data?.quizzes?.[7].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle);
+          return { ...question, options: shuffledOptions };
+        })
       );
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[7].icon);

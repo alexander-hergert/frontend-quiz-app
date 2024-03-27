@@ -26,7 +26,7 @@
 }
 
 nav input::before,
-.settings input::before {
+.settings input[type="checkbox"]::before {
   display: block;
   content: "";
   position: relative;
@@ -40,7 +40,7 @@ nav input::before,
 }
 
 nav input::after,
-.settings input::after {
+.settings input[type="checkbox"]::after {
   display: block;
   content: "";
   position: relative;
@@ -55,8 +55,39 @@ nav input::after,
 }
 
 nav input:checked::after,
-.settings input:checked::after {
+.settings input[type="checkbox"]:checked::after {
   left: 24px;
+}
+
+fieldset {
+  display: block;
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 145px;
+  height: 28px;
+  background-color: rgb(167, 41, 245);
+  z-index: 1;
+  border-radius: 999px;
+}
+
+.settings input[type="radio"]::after {
+  display: hidden;
+  content: "";
+  position: relative;
+  top: 4px;
+  left: 14px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  z-index: 2;
+  border-radius: 999px;
+  transition: left 0.3s ease;
+}
+
+.settings input[type="radio"]:checked::after {
+  display: block;
 }
 
 .text-shadow {

@@ -12,14 +12,17 @@ const metadata = {
 export default function RootLayout({ children }) {
   let htmlElement;
   let shuffle = false;
+  let number = 10;
 
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
     shuffle = localStorage.getItem("isShuffle");
+    number = parseInt(localStorage.getItem("numberOfQuestions"));
   }
 
   const [theme, setTheme] = useState("light");
   const [isShuffle, setIsShuffle] = useState(shuffle);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(number);
 
   return (
     <html lang="en" data-theme={"light"} className="bg-secondary">
@@ -32,7 +35,14 @@ export default function RootLayout({ children }) {
         ${theme === "dark" ? "d-bg-d t-bg-d m-bg-d" : "d-bg-l t-bg-l m-bg-l"}
       `}
       >
-        <GlobalContext.Provider value={{ isShuffle, setIsShuffle }}>
+        <GlobalContext.Provider
+          value={{
+            isShuffle,
+            setIsShuffle,
+            numberOfQuestions,
+            setNumberOfQuestions,
+          }}
+        >
           <Navbar theme={theme} setTheme={setTheme} />
           <main className="min-h-[100vh] max-xl:mb-12">{children}</main>
         </GlobalContext.Provider>

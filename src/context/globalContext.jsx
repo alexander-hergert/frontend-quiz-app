@@ -4,7 +4,14 @@ const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   return (
-    <GlobalContext.Provider value={{ isShuffle, setIsShuffle }}>
+    <GlobalContext.Provider
+      value={{
+        isShuffle,
+        setIsShuffle,
+        numberOfQuestions,
+        setNumberOfQuestions,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
