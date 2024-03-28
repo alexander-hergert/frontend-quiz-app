@@ -10,6 +10,8 @@ export const GlobalContextProvider = ({ children }) => {
         setIsShuffle,
         numberOfQuestions,
         setNumberOfQuestions,
+        isExam,
+        setIsExam,
       }}
     >
       {children}

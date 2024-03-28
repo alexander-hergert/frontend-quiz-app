@@ -13,16 +13,19 @@ export default function RootLayout({ children }) {
   let htmlElement;
   let shuffle = false;
   let number = 10;
+  let exam = false;
 
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
     shuffle = localStorage.getItem("isShuffle");
     number = parseInt(localStorage.getItem("numberOfQuestions"));
+    exam = localStorage.getItem("isExam");
   }
 
   const [theme, setTheme] = useState("light");
   const [isShuffle, setIsShuffle] = useState(shuffle);
   const [numberOfQuestions, setNumberOfQuestions] = useState(number);
+  const [isExam, setIsExam] = useState(exam);
 
   return (
     <html lang="en" data-theme={"light"} className="bg-secondary">
@@ -41,6 +44,8 @@ export default function RootLayout({ children }) {
             setIsShuffle,
             numberOfQuestions,
             setNumberOfQuestions,
+            isExam,
+            setIsExam,
           }}
         >
           <Navbar theme={theme} setTheme={setTheme} />

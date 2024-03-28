@@ -4,8 +4,14 @@ import { useContext } from "react";
 import GlobalContext from "@/context/globalContext";
 
 const Settings = () => {
-  const { isShuffle, setIsShuffle, numberOfQuestions, setNumberOfQuestions } =
-    useContext(GlobalContext);
+  const {
+    isShuffle,
+    setIsShuffle,
+    numberOfQuestions,
+    setNumberOfQuestions,
+    isExam,
+    setIsExam,
+  } = useContext(GlobalContext);
 
   return (
     <section className="text-accent flex flex-col justify-center items-center settings mt-4">
@@ -15,12 +21,15 @@ const Settings = () => {
         <input
           id="shuffle"
           onChange={() => {
-            setIsShuffle(!isShuffle);
-            localStorage.setItem("isShuffle", !isShuffle);
+            setIsShuffle(isShuffle === "true" ? "false" : "true");
+            localStorage.setItem(
+              "isShuffle",
+              isShuffle === "true" ? "false" : "true"
+            );
           }}
           type="checkbox"
           className="w-[48px] h-[28px] border-none cursor-pointer"
-          checked={Boolean(isShuffle)}
+          checked={isShuffle === "true" ? true : false}
         />
       </div>
       <div className="flex gap-4 mt-4">
@@ -65,6 +74,22 @@ const Settings = () => {
             />
           </fieldset>
         </div>
+      </div>
+      <div className="flex gap-4 mt-4">
+        <label htmlFor="exam">Exam mode</label>
+        <input
+          id="exam"
+          onChange={() => {
+            setIsExam(isExam === "true" ? "false" : "true");
+            localStorage.setItem(
+              "isExam",
+              isExam === "true" ? "false" : "true"
+            );
+          }}
+          type="checkbox"
+          className="w-[48px] h-[28px] border-none cursor-pointer"
+          checked={isExam === "true" ? true : false}
+        />
       </div>
     </section>
   );

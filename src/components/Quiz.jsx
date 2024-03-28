@@ -10,9 +10,17 @@ import error from "/public/assets/images/icon-error.svg";
 import { useContext } from "react";
 import GlobalContext from "@/context/globalContext";
 import { shuffleArray } from "@/app/utils/utils";
+import Timer from "./Timer";
 
 const Quiz = ({ data }) => {
-  const { isShuffle, numberOfQuestions } = useContext(GlobalContext);
+  const [isClient, setIsClient] = useState(false);
+
+  //to remove error
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const { isShuffle, numberOfQuestions, isExam } = useContext(GlobalContext);
   const pathname = usePathname();
   const [questions, setQuestions] = useState([]);
   const [icon, setIcon] = useState("");
@@ -215,6 +223,9 @@ const Quiz = ({ data }) => {
       className="flex max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-wrap xl:w-[1160px] max-md:h-[457px] 
         md:h-[822px] xl:h-[456px] md:gap-[64px] xl:gap-[140px] text-neutral"
     >
+      {isClient && isExam === "true" && (
+        <Timer setCurrentQuestion={setCurrentQuestion} />
+      )}
       {currentQuestion <= questions.length &&
         questions.map(
           (question, index) =>

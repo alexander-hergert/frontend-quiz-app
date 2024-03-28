@@ -1,4 +1,8 @@
-export const shuffleArray = (array, isShuffle, numberOfQuestions = 10) => {
+export const shuffleArray = (
+  array,
+  isShuffle = false,
+  numberOfQuestions = 10
+) => {
   if (isShuffle) {
     const shuffledArray = array.slice();
     for (let i = shuffledArray.length - 1; i > 0; i--) {
