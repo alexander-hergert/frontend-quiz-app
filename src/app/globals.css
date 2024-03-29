@@ -59,7 +59,7 @@ nav input:checked::after,
   left: 24px;
 }
 
-fieldset {
+.number-of-questions {
   display: block;
   content: "";
   position: relative;

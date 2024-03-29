@@ -14,18 +14,24 @@ export default function RootLayout({ children }) {
   let shuffle = false;
   let number = 10;
   let exam = false;
+  let mixMode = false;
+  let topics = [];
 
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
     shuffle = localStorage.getItem("isShuffle");
     number = parseInt(localStorage.getItem("numberOfQuestions"));
     exam = localStorage.getItem("isExam");
+    mixMode = localStorage.getItem("mixMode");
+    topics = JSON.parse(localStorage.getItem("topics"));
   }
 
   const [theme, setTheme] = useState("light");
   const [isShuffle, setIsShuffle] = useState(shuffle);
   const [numberOfQuestions, setNumberOfQuestions] = useState(number);
   const [isExam, setIsExam] = useState(exam);
+  const [isMixMode, setIsMixMode] = useState(mixMode);
+  const [selectedTopics, setSelectedTopics] = useState(topics || []);
 
   return (
     <html lang="en" data-theme={"light"} className="bg-secondary">
@@ -46,6 +52,10 @@ export default function RootLayout({ children }) {
             setNumberOfQuestions,
             isExam,
             setIsExam,
+            isMixMode,
+            setIsMixMode,
+            selectedTopics,
+            setSelectedTopics,
           }}
         >
           <Navbar theme={theme} setTheme={setTheme} />

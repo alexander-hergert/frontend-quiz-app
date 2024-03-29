@@ -1,9 +1,16 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import GlobalContext from "@/context/globalContext";
+import { link } from "./QuizButtons";
 
 const Settings = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const {
     isShuffle,
     setIsShuffle,
@@ -11,6 +18,10 @@ const Settings = () => {
     setNumberOfQuestions,
     isExam,
     setIsExam,
+    isMixMode,
+    setIsMixMode,
+    selectedTopics,
+    setSelectedTopics,
   } = useContext(GlobalContext);
 
   return (
@@ -35,7 +46,7 @@ const Settings = () => {
       <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="number">Number of Questions</label>
         <div id="number">
-          <fieldset>
+          <fieldset className="number-of-questions">
             <input
               onChange={() => {
                 setNumberOfQuestions(10);
@@ -91,6 +102,54 @@ const Settings = () => {
           checked={isExam === "true" ? true : false}
         />
       </div>
+      <div className="flex justify-between gap-4 mt-4 w-[327px]">
+        <label htmlFor="mix">Mix mode</label>
+        <input
+          id="mix"
+          onChange={() => {
+            setIsMixMode(isMixMode === "true" ? "false" : "true");
+            localStorage.setItem(
+              "mixMode",
+              isMixMode === "true" ? "false" : "true"
+            );
+          }}
+          type="checkbox"
+          className="w-[48px] h-[28px] border-none cursor-pointer"
+          checked={isMixMode === "true" ? true : false}
+        />
+      </div>
+      {isMixMode === "true" && isClient && (
+        <div className="flex justify-between items-center gap-4 mt-4 w-[327px]">
+          <label htmlFor="topics" className="self-start mt-4">
+            Topics
+          </label>
+          <aside>
+            {link.map((link, index) => {
+              return (
+                <fieldset
+                  key={link.text}
+                  className="flex justify-between items-center gap-4"
+                  onChange={() => {
+                    const newTopics = selectedTopics.includes(link.text)
+                      ? selectedTopics.filter((topic) => topic !== link.text) //take away
+                      : [...selectedTopics, link.text]; //put in
+                    setSelectedTopics(newTopics);
+                    localStorage.setItem("topics", JSON.stringify(newTopics));
+                  }}
+                >
+                  <label htmlFor="html-topic">{link.text}</label>
+                  <input
+                    id={link.text}
+                    type="checkbox"
+                    className="appearance-none mt-4 cursor-pointer"
+                    defaultChecked={selectedTopics.includes(link.text)}
+                  />
+                </fieldset>
+              );
+            })}
+          </aside>
+        </div>
+      )}
     </section>
   );
 };

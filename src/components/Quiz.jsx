@@ -18,9 +18,11 @@ const Quiz = ({ data }) => {
   //to remove error
   useEffect(() => {
     setIsClient(true);
+    window.scrollTo(0, 0);
   }, []);
 
-  const { isShuffle, numberOfQuestions, isExam } = useContext(GlobalContext);
+  const { isShuffle, numberOfQuestions, isExam, isMixMode, selectedTopics } =
+    useContext(GlobalContext);
   const pathname = usePathname();
   const [questions, setQuestions] = useState([]);
   const [icon, setIcon] = useState("");
@@ -141,6 +143,29 @@ const Quiz = ({ data }) => {
       setQuestions(shuffledArray);
       setIcon(data?.quizzes?.[7].icon);
       setTitle(data?.quizzes?.[7].title);
+    } else if (pathname === "/mix") {
+      if (isMixMode === "true") {
+        const newArrayOfQuestions = [];
+        for (let i = 0; i < data?.quizzes.length; i++) {
+          if (selectedTopics.includes(data?.quizzes[i].title)) {
+            newArrayOfQuestions.push(data?.quizzes[i].questions);
+          }
+        }
+        const joinedArray = newArrayOfQuestions.flat();
+        const shuffledArray = shuffleArray(
+          shuffleArray(joinedArray, isShuffle, numberOfQuestions).map(
+            (question) => {
+              const shuffledOptions = shuffleArray(question.options, isShuffle);
+              return { ...question, options: shuffledOptions };
+            }
+          )
+        );
+        setQuestions(shuffledArray);
+        setIcon(data?.quizzes?.[0].icon);
+        setTitle(data?.quizzes?.[0].title);
+      } else {
+        router.push("/");
+      }
     } else {
       router.push("/");
     }

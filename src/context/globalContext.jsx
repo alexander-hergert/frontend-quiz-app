@@ -12,6 +12,10 @@ export const GlobalContextProvider = ({ children }) => {
         setNumberOfQuestions,
         isExam,
         setIsExam,
+        isMixMode,
+        setIsMixMode,
+        selectedTopics,
+        setSelectedTopics,
       }}
     >
       {children}
