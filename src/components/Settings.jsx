@@ -14,9 +14,9 @@ const Settings = () => {
   } = useContext(GlobalContext);
 
   return (
-    <section className="text-accent flex flex-col justify-center items-center settings mt-4">
+    <section className="text-accent flex flex-col justify-center items-center settings mt-20">
       <h1 className="text-2xl">Settings</h1>
-      <div className="flex gap-4 mt-4">
+      <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="shuffle">Shuffle mode</label>
         <input
           id="shuffle"
@@ -32,7 +32,7 @@ const Settings = () => {
           checked={isShuffle === "true" ? true : false}
         />
       </div>
-      <div className="flex gap-4 mt-4">
+      <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="number">Number of Questions</label>
         <div id="number">
           <fieldset>
@@ -75,7 +75,7 @@ const Settings = () => {
           </fieldset>
         </div>
       </div>
-      <div className="flex gap-4 mt-4">
+      <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="exam">Exam mode</label>
         <input
           id="exam"

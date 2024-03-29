@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import QuizButton from "./QuizButton";
 import picHtml from "/public/assets/images/icon-html.svg";
 import picCss from "/public/assets/images/icon-css.svg";
@@ -31,14 +32,28 @@ export const link = [
 ];
 
 const QuizButtons = () => {
+  const [page, setPage] = useState(1);
+
   return (
-    <article
-      className="max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:h-[292px] flex flex-col gap-[24px] 
+    <article>
+      <aside
+        className="max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:h-[292px] flex flex-col gap-[24px] 
     text-neutral"
-    >
-      {link.map((link, index) => {
-        return <QuizButton key={index} link={link} />;
-      })}
+      >
+        {link.map((link, index) => {
+          if (page === 1 && index < 4) {
+            return <QuizButton key={index} link={link} />;
+          } else if (page === 2 && index >= 4) {
+            return <QuizButton key={index} link={link} />;
+          }
+        })}
+      </aside>
+      <button
+        onClick={() => setPage(page === 1 ? 2 : 1)}
+        className="btn relative mt-4 bg-primary border-0 text-neutral hover:bg-primary"
+      >
+        Switch page
+      </button>
     </article>
   );
 };

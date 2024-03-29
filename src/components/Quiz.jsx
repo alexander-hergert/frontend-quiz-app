@@ -213,6 +213,8 @@ const Quiz = ({ data }) => {
     setIsAnswerSubmitted(false);
     setAnswer("");
     setCurrentQuestion(currentQuestion + 1);
+    //scroll to top
+    window.scrollTo(0, 0);
     if (currentQuestion < questions.length) {
       setCorrectAnswer(questions[currentQuestion].answer);
     }
@@ -246,11 +248,11 @@ const Quiz = ({ data }) => {
                   <progress
                     className="progress progress-info border-4 bg-primary border-primary max-md:w-[327px] md:w-[640px] xl:w-[465px] h-[16px]"
                     value={currentQuestion - 1}
-                    max="10"
+                    max={questions.length - 1}
                   ></progress>
                 </div>
                 <form
-                  className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] h-[440px]"
+                  className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] "
                   onSubmit={(e) => handleSubmit(e)}
                 >
                   <ul className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
@@ -269,12 +271,12 @@ const Quiz = ({ data }) => {
                             answerIndex === correctAnswerIndex &&
                             isAnswerSubmitted &&
                             answerIndex === optionIndex
-                              ? "border-2 bg-primary border-green max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                              ? "border-2 bg-primary border-green p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
                               : `${
                                   answerIndex === optionIndex &&
                                   isAnswerSubmitted
-                                    ? "border-2 bg-primary border-red max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
-                                    : `bg-primary max-md:h-[64px] md:h-[80px] h-[92px] rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full
+                                    ? "border-2 bg-primary border-red p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                                    : `bg-primary p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full
                                     group`
                                 }`
                           }
@@ -293,7 +295,7 @@ const Quiz = ({ data }) => {
                               }}
                             />
                             <div
-                              className={`flex justify-center items-center max-md:w-[40px] max-md:h-[40px] w-[56px] h-[56px] bg-gray
+                              className={`flex justify-center items-center max-md:min-w-[40px] max-md:h-[40px] min-w-[56px] h-[56px] bg-gray
                            self-center text-xl rounded-[8px] text-black  ${
                              answerIndex !== optionIndex
                                ? "group-hover:bg-[#f6e7ff] group-hover:text-info"
@@ -318,7 +320,7 @@ const Quiz = ({ data }) => {
                               {option}
                             </span>
                           </div>
-                          <div className="mr-4 self-center">
+                          <div className="mr-4 self-center min-w-[40px]">
                             {answerIndex === correctAnswerIndex &&
                             isAnswerSubmitted &&
                             answerIndex === optionIndex ? (

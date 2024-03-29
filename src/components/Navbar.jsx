@@ -10,6 +10,10 @@ import html from "/public/assets/images/icon-html.svg";
 import css from "/public/assets/images/icon-css.svg";
 import js from "/public/assets/images/icon-js.svg";
 import accessibility from "/public/assets/images/icon-accessibility.svg";
+import react from "/public/assets/images/icon-react.svg";
+import nodejs from "/public/assets/images/icon-nodejs.svg";
+import sql from "/public/assets/images/icon-sql.svg";
+import git from "/public/assets/images/icon-gitbash.svg";
 
 const Navbar = ({ theme, setTheme }) => {
   let htmlElement;
@@ -77,6 +81,38 @@ const Navbar = ({ theme, setTheme }) => {
             <Image src={accessibility} alt="accessibility-icon" />
           </div>
           <h1 className="text-2xl">Accessibility</h1>
+        </div>
+      )}
+      {pathname === "/react" && (
+        <div className="flex gap-4 items-center">
+          <div className="bg-react rounded p-1">
+            <Image src={react} alt="react-icon" />
+          </div>
+          <h1 className="text-2xl">React</h1>
+        </div>
+      )}
+      {pathname === "/nodejs" && (
+        <div className="flex gap-4 items-center">
+          <div className="bg-nodejs rounded p-1">
+            <Image src={nodejs} alt="nodejs-icon" />
+          </div>
+          <h1 className="text-2xl">Node.js</h1>
+        </div>
+      )}
+      {pathname === "/sql" && (
+        <div className="flex gap-4 items-center">
+          <div className="bg-sql rounded p-1">
+            <Image src={sql} alt="sql-icon" />
+          </div>
+          <h1 className="text-2xl">SQL</h1>
+        </div>
+      )}
+      {pathname === "/git" && (
+        <div className="flex gap-4 items-center">
+          <div className="bg-git rounded p-1">
+            <Image src={git} alt="git-icon" />
+          </div>
+          <h1 className="text-2xl">Git</h1>
         </div>
       )}
       {/* Add the toggle theme button here */}
