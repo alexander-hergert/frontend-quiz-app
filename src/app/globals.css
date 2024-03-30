@@ -129,3 +129,33 @@ body {
     background-image: url("/assets/images/pattern-background-mobile-light.svg");
   }
 }
+
+/* Animations */
+
+/* rotation in clock with inner radius*/
+
+@keyframes rotateRight {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateLeft {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.rotate-right {
+  animation: rotateRight 20s linear infinite;
+}
+
+.rotate-left {
+  animation: rotateLeft 10s linear infinite;
+}
