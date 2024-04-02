@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import html from "/public/assets/images/icon-html.svg";
@@ -12,13 +11,17 @@ import sql from "/public/assets/images/icon-sql.svg";
 import git from "/public/assets/images/icon-gitbash.svg";
 import { link } from "./QuizButtons";
 
-const MixButton = () => {
+const MixButton = ({ selectedTopics }) => {
   const router = useRouter();
   const sources = [html, css, js, accessibility, react, nodejs, sql, git];
   return (
     <div
-      onClick={() => router.push("/mix", { scroll: false })}
-      className="justify-center max-md:w-[327px] md:w-[640px] xl:w-[564px] h-[392px] bg-primary px-[20px] w-full max-xl:rounded-[12px] xl:rounded-[24px] flex gap-4 items-center cursor-pointer"
+      onClick={() => {
+        if (selectedTopics?.length > 0) {
+          router.push("/mix", { scroll: false });
+        }
+      }}
+      className="justify-center max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:h-[292px] h-[392px] bg-primary px-[20px] w-full max-xl:rounded-[12px] xl:rounded-[24px] flex gap-4 items-center cursor-pointer"
     >
       <article className="relative rotate-right">
         <div
@@ -62,10 +65,6 @@ const MixButton = () => {
           <Image src={sources[7]} alt={link[7].text} width={40} height={40} />
         </div>
       </article>
-
-      {/* <Link href="/mix" className="max-md:text-sm text-2xl">
-        Mixmode
-      </Link> */}
     </div>
   );
 };

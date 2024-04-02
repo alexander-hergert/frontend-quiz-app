@@ -35,7 +35,7 @@ export const link = [
 
 const QuizButtons = () => {
   const [page, setPage] = useState(1);
-  const { isMixMode } = useContext(GlobalContext);
+  const { isMixMode, selectedTopics } = useContext(GlobalContext);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -60,7 +60,9 @@ const QuizButtons = () => {
               })}
             </aside>
           )}
-          {isMixMode === "true" && <MixButton />}
+          {isMixMode === "true" && (
+            <MixButton selectedTopics={selectedTopics} />
+          )}
           <button
             onClick={() => setPage(page === 1 ? 2 : 1)}
             className="btn relative mt-4 bg-primary border-0 text-neutral hover:bg-primary"

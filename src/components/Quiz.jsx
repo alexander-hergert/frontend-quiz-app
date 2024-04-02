@@ -247,12 +247,16 @@ const Quiz = ({ data }) => {
 
   return (
     <section
-      className="flex max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-wrap xl:w-[1160px] max-md:h-[457px] 
-        md:h-[822px] xl:h-[456px] md:gap-[64px] xl:gap-[140px] text-neutral"
+      className={`${
+        isExam === "true" && isClient ? "select-none" : ""
+      } flex max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-wrap xl:w-[1160px] md:gap-[64px] 
+    xl:gap-[140px] text-neutral break-words`}
     >
-      {isClient && isExam === "true" && (
-        <Timer setCurrentQuestion={setCurrentQuestion} />
-      )}
+      {isClient &&
+        isExam === "true" &&
+        currentQuestion <= numberOfQuestions && (
+          <Timer setCurrentQuestion={setCurrentQuestion} />
+        )}
       {currentQuestion <= questions.length &&
         questions.map(
           (question, index) =>
@@ -261,7 +265,7 @@ const Quiz = ({ data }) => {
                 key={index}
                 className="flex max-xl:flex-col w-full max-md:gap-0 gap-[64px] xl:gap-4 xl:justify-between"
               >
-                <div className="flex flex-col xl:justify-between md:w-[640px] xl:w-[465px] h-[242px] xl:h-[452px] gap-[40px]">
+                <div className="flex flex-col xl:justify-between md:w-[640px] xl:w-[465px] gap-[40px]">
                   <div className="max-md:h-[129px] h-[186px] flex flex-col">
                     <p className="text-gray mb-[27px] text-xl h-[129px]">
                       Question {currentQuestion} of {questions.length}
@@ -389,7 +393,7 @@ const Quiz = ({ data }) => {
             )
         )}
       {currentQuestion > questions.length && (
-        <Score score={score} icon={icon} title={title} />
+        <Score score={score} icon={icon} title={title} numberOfQuestions={numberOfQuestions}/>
       )}
     </section>
   );

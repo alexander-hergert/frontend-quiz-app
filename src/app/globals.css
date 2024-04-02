@@ -65,7 +65,7 @@ nav input:checked::after,
   position: relative;
   top: 0;
   left: 0;
-  width: 145px;
+  width: 100px;
   height: 28px;
   background-color: rgb(167, 41, 245);
   z-index: 1;
@@ -77,7 +77,7 @@ nav input:checked::after,
   content: "";
   position: relative;
   top: 4px;
-  left: 14px;
+  left: 12px;
   width: 20px;
   height: 20px;
   background-color: white;
