@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor Quiz App
 
-## Getting Started
+## To install this project
 
-First, run the development server:
+- Please remove the .git file by using command "rm -rf .git"
+- Then use "git init" again
+- Then "npm install" or "yarn install"
+- Then "npm update" or "yarn upgrade"
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Used Technologies...
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Frontend Technologies
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### [Next.js](https://nextjs.org/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+... is a JavaScript framework for building web applications. Developed by Vercel, it enables the creation of dynamic and interactive user interfaces with reusable components. Ideal for crafting modern and efficient front-end experiences with server-side rendering and routing capabilities.
 
-## Learn More
+### [Tailwind-CSS](https://tailwindcss.com/docs/guides/vite)
 
-To learn more about Next.js, take a look at the following resources:
+... simplifies styling in your React application by using classnames.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### [Vercel](https://vercel.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+... is a cloud platform for deploying web applications. It provides seamless deployment and hosting solutions for front-end projects, offering features like automatic scaling, continuous deployment, and edge caching. Developed by the creators of Next.js, Vercel specializes in optimizing the deployment process for modern web applications, making it easy to deliver high-performance experiences to users worldwide.
 
-## Deploy on Vercel
+## Project Overview
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project is representing a quiz app for developers where users can pick up a topic and test their knowledge.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Paths of the application
+
+/ - home route
+/topic - url to topics (html, css, javascript, accessibility, react, nodejs, sql, git)
+
+## General overview of the app
+
+![Home](/public/assets/images/quiz-tablet.png)
+![Homemobile](/public/assets/quiz-mobile.png)
+
+On the Homepage of the app the users can select a topic to test their knowledge.
+In addition to challenge myself I have add settings and more topics and more questions to the app.
+
+_Feel free to use the data.json and the questions if you like them. The questions are AI generated. Except for the starter questions which came from Frontend Mentor_
+
+In total the app does cover 8 topics with at least 50 different questions in each topic. The app is easily expandable by just adding more questions to the data.json.
+
+The settings one can set on the bottom are stored locally on the browser.
+
+The setting modes are:
+
+- Shuffle: This mode does mix the questions and the options each time you start a quiz and makes it hard to memorize correct positions to test your skills better.
+
+- Number: You can select here how many questions you want to be asked. You can pick 10, 20 and 30.
+
+- Exam mode: This mode does add a little more difficulty to the quiz and adds a timer to the quiz. You are also not allowed to copy the questions or options to google them for example.
+
+- Mix mode: The mixmode is the most interesting part. By setting it to on you can select the topic you want have in your quiz to test a broader part of your knowledge in one quiz. Activating it with exam mode can add some nice challenge here.
+
+![Quiz](/public/assets/images/quiz-desktop.png)
+
+In the quiz path /topic you are able to play the quiz. After finishing all questions you can see the final result and then play again.
