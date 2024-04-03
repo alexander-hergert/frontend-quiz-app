@@ -266,8 +266,8 @@ const Quiz = ({ data }) => {
                 className="flex max-xl:flex-col w-full max-md:gap-0 gap-[64px] xl:gap-4 xl:justify-between"
               >
                 <div className="flex flex-col xl:justify-between md:w-[640px] xl:w-[465px] gap-[40px]">
-                  <div className="max-md:h-[129px] h-[186px] flex flex-col">
-                    <p className="text-gray mb-[27px] text-xl h-[129px]">
+                  <div className="flex flex-col">
+                    <p className="text-gray mb-[27px] text-xl">
                       Question {currentQuestion} of {questions.length}
                     </p>
                     <p className="text-[2rem] max-md:text-xl">
@@ -275,13 +275,13 @@ const Quiz = ({ data }) => {
                     </p>
                   </div>
                   <progress
-                    className="progress progress-info border-4 bg-primary border-primary max-md:w-[327px] md:w-[640px] xl:w-[465px] h-[16px]"
+                    className="max-md:mt-4 progress progress-info border-4 bg-primary border-primary max-md:w-[327px] md:w-[640px] xl:w-[465px] h-[16px]"
                     value={currentQuestion - 1}
                     max={questions.length - 1}
                   ></progress>
                 </div>
                 <form
-                  className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] "
+                  className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:mt-8"
                   onSubmit={(e) => handleSubmit(e)}
                 >
                   <ul className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
@@ -393,7 +393,12 @@ const Quiz = ({ data }) => {
             )
         )}
       {currentQuestion > questions.length && (
-        <Score score={score} icon={icon} title={title} numberOfQuestions={numberOfQuestions}/>
+        <Score
+          score={score}
+          icon={icon}
+          title={title}
+          numberOfQuestions={numberOfQuestions}
+        />
       )}
     </section>
   );

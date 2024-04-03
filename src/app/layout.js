@@ -16,17 +16,27 @@ export default function RootLayout({ children }) {
   let exam = false;
   let mixMode = false;
   let topics = [];
+  let themeMode = "dark";
 
   if (typeof window !== "undefined") {
     htmlElement = document.querySelector("html");
+    if (localStorage.getItem("theme") === null) {
+      localStorage.setItem("isShuffle", shuffle);
+      localStorage.setItem("numberOfQuestions", number);
+      localStorage.setItem("isExam", exam);
+      localStorage.setItem("mixMode", mixMode);
+      localStorage.setItem("theme", themeMode);
+      localStorage.setItem("topics", JSON.stringify(topics));
+    }
     shuffle = localStorage.getItem("isShuffle");
     number = parseInt(localStorage.getItem("numberOfQuestions"));
     exam = localStorage.getItem("isExam");
     mixMode = localStorage.getItem("mixMode");
     topics = JSON.parse(localStorage.getItem("topics"));
+    themeMode = localStorage.getItem("theme");
   }
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(themeMode);
   const [isShuffle, setIsShuffle] = useState(shuffle);
   const [numberOfQuestions, setNumberOfQuestions] = useState(number);
   const [isExam, setIsExam] = useState(exam);
