@@ -54,7 +54,7 @@ The setting modes are:
 
 - Exam mode: This mode does add a little more difficulty to the quiz and adds a timer to the quiz. You are also not allowed to copy the questions or options to google them for example.
 
-- Mix mode: The mixmode is the most interesting part. By setting it to on you can select the topic you want have in your quiz to test a broader part of your knowledge in one quiz. Activating it with exam mode can add some nice challenge here.
+- Mix mode: The mixmode is the most interesting part. By setting it to on you can select the topic you want have in your quiz to test a broader part of your knowledge in one quiz. Activating it with exam mode can add some nice challenge here. Mix mode also by default runs in shuffle mode.
 
 ![Quiz](/public/assets/images/quiz-desktop.png)
 

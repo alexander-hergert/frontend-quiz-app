@@ -11,6 +11,7 @@ import { useContext } from "react";
 import GlobalContext from "@/context/globalContext";
 import { shuffleArray } from "@/app/utils/utils";
 import Timer from "./Timer";
+import { link } from "./QuizButtons";
 
 const Quiz = ({ data }) => {
   const [isClient, setIsClient] = useState(false);
@@ -31,142 +32,49 @@ const Quiz = ({ data }) => {
 
   //set questions and icon based on pathname
   useEffect(() => {
-    if (pathname === "/html") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[0].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[0].icon);
-      setTitle(data?.quizzes?.[0].title);
-    } else if (pathname === "/css") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[1].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[1].icon);
-      setTitle(data?.quizzes?.[1].title);
-    } else if (pathname === "/javascript") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[2].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[2].icon);
-      setTitle(data?.quizzes?.[2].title);
-    } else if (pathname === "/accessibility") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[3].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[3].icon);
-      setTitle(data?.quizzes?.[3].title);
-    } else if (pathname === "/react") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[4].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[4].icon);
-      setTitle(data?.quizzes?.[4].title);
-    } else if (pathname === "/nodejs") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[5].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[5].icon);
-      setTitle(data?.quizzes?.[5].title);
-    } else if (pathname === "/sql") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[6].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[6].icon);
-      setTitle(data?.quizzes?.[6].title);
-    } else if (pathname === "/git") {
-      const shuffledArray = shuffleArray(
-        shuffleArray(
-          data?.quizzes?.[7].questions,
-          isShuffle,
-          numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle);
-          return { ...question, options: shuffledOptions };
-        })
-      );
-      setQuestions(shuffledArray);
-      setIcon(data?.quizzes?.[7].icon);
-      setTitle(data?.quizzes?.[7].title);
-    } else if (pathname === "/mix") {
-      if (isMixMode === "true") {
-        const newArrayOfQuestions = [];
-        for (let i = 0; i < data?.quizzes.length; i++) {
-          if (selectedTopics.includes(data?.quizzes[i].title)) {
-            newArrayOfQuestions.push(data?.quizzes[i].questions);
-          }
-        }
-        const joinedArray = newArrayOfQuestions.flat();
+    for (const item of link) {
+      if (item.path === pathname) {
+        const index = link.indexOf(item);
         const shuffledArray = shuffleArray(
-          shuffleArray(joinedArray, isShuffle, numberOfQuestions).map(
-            (question) => {
-              const shuffledOptions = shuffleArray(question.options, isShuffle);
-              return { ...question, options: shuffledOptions };
-            }
-          )
-        );
+          data?.quizzes?.[index].questions,
+          isShuffle,
+          numberOfQuestions
+        ).map((question) => {
+          const shuffledOptions = shuffleArray(question.options, isShuffle, 4);
+          return { ...question, options: shuffledOptions };
+        });
         setQuestions(shuffledArray);
-        setIcon(data?.quizzes?.[0].icon);
-        setTitle(data?.quizzes?.[0].title);
-      } else {
-        router.push("/");
+        setIcon(data?.quizzes?.[index].icon);
+        setTitle(data?.quizzes?.[index].title);
       }
+
+      if (pathname === "/mix") {
+        if (isMixMode === "true") {
+          const newArrayOfQuestions = [];
+          for (let i = 0; i < data?.quizzes.length; i++) {
+            if (selectedTopics.includes(data?.quizzes[i].title)) {
+              newArrayOfQuestions.push(data?.quizzes[i].questions);
+            }
+          }
+          const joinedArray = newArrayOfQuestions.flat();
+          const shuffledArray = shuffleArray(
+            shuffleArray(joinedArray, "true", numberOfQuestions).map(
+              (question) => {
+                const shuffledOptions = shuffleArray(question.options, "true");
+                return { ...question, options: shuffledOptions };
+              }
+            )
+          );
+          setQuestions(shuffledArray);
+          setIcon(data?.quizzes?.[0].icon);
+          setTitle(data?.quizzes?.[0].title);
+        }
+      }
+    }
+    if (pathname === "/mix" || link.some((item) => item.path === pathname)) {
+      console.log("valid path");
     } else {
+      console.log("invalid path");
       router.push("/");
     }
   }, [pathname, data]);
@@ -227,7 +135,6 @@ const Quiz = ({ data }) => {
       questions[currentQuestion - 1].options.indexOf(correctAnswer)
     );
     if (answer === correctAnswer) {
-      console.log("Correct");
       setScore(score + 1);
     } else {
     }
@@ -300,12 +207,12 @@ const Quiz = ({ data }) => {
                             answerIndex === correctAnswerIndex &&
                             isAnswerSubmitted &&
                             answerIndex === optionIndex
-                              ? "border-2 bg-primary border-green p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                              ? "border-2 bg-primary border-green p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full break-words"
                               : `${
                                   answerIndex === optionIndex &&
                                   isAnswerSubmitted
-                                    ? "border-2 bg-primary border-red p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
-                                    : `bg-primary p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full
+                                    ? "break-words border-2 bg-primary border-red p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full"
+                                    : `break-words bg-primary p-4 rounded-[24px] flex justify-between gap-[32px] pl-[20px] w-full
                                     group`
                                 }`
                           }

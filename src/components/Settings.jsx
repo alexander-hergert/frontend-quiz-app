@@ -32,6 +32,8 @@ const Settings = () => {
         <div className="flex items-center gap-2">
           <span>Off</span>
           <input
+            role="checkbox"
+            aria-label="shuffle mode"
             id="shuffle"
             onChange={() => {
               setIsShuffle(isShuffle === "true" ? "false" : "true");
@@ -42,7 +44,9 @@ const Settings = () => {
             }}
             type="checkbox"
             className="w-[48px] h-[28px] border-none cursor-pointer"
-            checked={isShuffle === "true" ? true : false}
+            checked={
+              isShuffle === "true" || isMixMode === "true" ? true : false
+            }
           />
           <span>On</span>
         </div>
@@ -52,6 +56,8 @@ const Settings = () => {
         <div id="number" className="flex items-center gap-2 w-[120px]">
           <fieldset className="number-of-questions w-[100px]">
             <input
+              role="radio"
+              aria-label="10 questions"
               onChange={() => {
                 setNumberOfQuestions(10);
                 localStorage.setItem("numberOfQuestions", 10);
@@ -64,6 +70,8 @@ const Settings = () => {
               checked={numberOfQuestions === 10}
             />
             <input
+              role="radio"
+              aria-label="20 questions"
               onChange={() => {
                 setNumberOfQuestions(20);
                 localStorage.setItem("numberOfQuestions", 20);
@@ -76,6 +84,8 @@ const Settings = () => {
               checked={numberOfQuestions === 20}
             />
             <input
+              role="radio"
+              aria-label="30 questions"
               onChange={() => {
                 setNumberOfQuestions(30);
                 localStorage.setItem("numberOfQuestions", 30);
@@ -98,6 +108,8 @@ const Settings = () => {
         <div className="flex items-center gap-2">
           <span>Off</span>
           <input
+            role="checkbox"
+            aria-label="exam mode"
             id="exam"
             onChange={() => {
               setIsExam(isExam === "true" ? "false" : "true");
@@ -118,6 +130,8 @@ const Settings = () => {
         <div className="flex items-center gap-2">
           <span>Off</span>
           <input
+            role="checkbox"
+            aria-label="mix mode"
             id="mix"
             onChange={() => {
               setIsMixMode(isMixMode === "true" ? "false" : "true");
@@ -139,7 +153,7 @@ const Settings = () => {
             Topics
           </label>
           <aside>
-            {link.map((link, index) => {
+            {link.map((link) => {
               return (
                 <fieldset
                   key={link.text}
@@ -156,6 +170,8 @@ const Settings = () => {
                   <div className="flex items-center gap-2">
                     <span>Off</span>
                     <input
+                      role="checkbox"
+                      aria-label={link.text}
                       id={link.text}
                       type="checkbox"
                       className="appearance-none mt-4 cursor-pointer"
