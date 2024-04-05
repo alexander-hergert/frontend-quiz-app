@@ -35,7 +35,7 @@ The project is representing a quiz app for developers where users can pick up a 
 ## General overview of the app
 
 ![Home](/public/assets/images/quiz-tablet.png)
-![Homemobile](/public/assets/quiz-mobile.png)
+![Homemobile](/public/assets/images/quiz-mobile.png)
 
 On the Homepage of the app the users can select a topic to test their knowledge.
 In addition to challenge myself I have add settings and more topics and more questions to the app.

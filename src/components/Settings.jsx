@@ -29,7 +29,7 @@ const Settings = () => {
       <h1 className="text-2xl">Settings</h1>
       <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="shuffle">Shuffle mode</label>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-[7rem]">
           <span>Off</span>
           <input
             role="checkbox"
@@ -53,8 +53,8 @@ const Settings = () => {
       </div>
       <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="number">Number of Questions</label>
-        <div id="number" className="flex items-center gap-2 w-[120px]">
-          <fieldset className="number-of-questions w-[100px]">
+        <div id="number" className="flex items-center gap-2 w-[7rem]">
+          <fieldset className="number-of-questions">
             <input
               role="radio"
               aria-label="10 questions"
@@ -105,7 +105,7 @@ const Settings = () => {
       </div>
       <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="exam">Exam mode</label>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-[7rem]">
           <span>Off</span>
           <input
             role="checkbox"
@@ -127,7 +127,7 @@ const Settings = () => {
       </div>
       <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="mix">Mix mode</label>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-[7rem]">
           <span>Off</span>
           <input
             role="checkbox"
@@ -149,7 +149,7 @@ const Settings = () => {
       </div>
       {isMixMode === "true" && isClient && (
         <div className="flex justify-between items-center gap-4 mt-4 w-[327px]">
-          <label htmlFor="topics" className="self-start mt-4">
+          <label htmlFor="topics" className="self-start mt-5">
             Topics
           </label>
           <aside>
@@ -166,10 +166,11 @@ const Settings = () => {
                     localStorage.setItem("topics", JSON.stringify(newTopics));
                   }}
                 >
-                  <label htmlFor="html-topic">{link.text}</label>
-                  <div className="flex items-center gap-2">
+                  <label htmlFor={link.text}>{link.text}</label>
+                  <div className="flex items-center gap-2 w-[7rem]">
                     <span>Off</span>
                     <input
+                      name={link.text}
                       role="checkbox"
                       aria-label={link.text}
                       id={link.text}
