@@ -26,6 +26,7 @@ module.exports = {
         nodejs: "rgb(232, 255, 243)",
         sql: "rgb(255, 243, 232)",
         git: "rgb(255, 232, 232)",
+        mix: "rgb(255, 232, 255)",
         nav: "rgb(167, 41, 245)",
         gray: "rgb(244, 246, 250)",
         green: "rgb(58, 215, 131)",

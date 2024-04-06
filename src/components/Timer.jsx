@@ -31,7 +31,7 @@ const Timer = ({ setCurrentQuestion }) => {
   }, [seconds, minutes]);
 
   return (
-    <span className="countdown font-mono text-2xl absolute top-4 left-4">
+    <span className="countdown font-mono text-2xl absolute top-4 left-4 bg-info rounded p-1 max-md:text-xl max-md:flex-col items-center">
       {isClient && (
         <>
           <span style={{ "--value": minutes }}>{minutes}</span>m

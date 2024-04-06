@@ -10,6 +10,7 @@ import picReact from "/public/assets/images/icon-react.svg";
 import picNodejs from "/public/assets/images/icon-nodejs.svg";
 import picSql from "/public/assets/images/icon-sql.svg";
 import picGit from "/public/assets/images/icon-gitbash.svg";
+import picMix from "/public/assets/images/icon-mix.svg";
 import MixButton from "./MixButton";
 
 export const link = [
@@ -31,6 +32,7 @@ export const link = [
   { path: "/nodejs", text: "Node.js", picture: picNodejs, color: "bg-nodejs" },
   { path: "/sql", text: "SQL", picture: picSql, color: "bg-sql" },
   { path: "/git", text: "Git", picture: picGit, color: "bg-git" },
+  { path: "/mix", text: "Mix", picture: picMix, color: "bg-mix" },
 ];
 
 const QuizButtons = () => {

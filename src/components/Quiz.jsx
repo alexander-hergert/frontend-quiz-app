@@ -33,7 +33,7 @@ const Quiz = ({ data }) => {
   //set questions and icon based on pathname
   useEffect(() => {
     for (const item of link) {
-      if (item.path === pathname) {
+      if (item.path === pathname && pathname !== "/mix") {
         const index = link.indexOf(item);
         const shuffledArray = shuffleArray(
           data?.quizzes?.[index].questions,
@@ -174,7 +174,7 @@ const Quiz = ({ data }) => {
               >
                 <div className="flex flex-col xl:justify-between md:w-[640px] xl:w-[465px] gap-[40px]">
                   <div className="flex flex-col">
-                    <p className="text-gray mb-[27px] text-xl">
+                    <p className="text-accent mb-[27px] text-xl">
                       Question {currentQuestion} of {questions.length}
                     </p>
                     <p className="text-[2rem] max-md:text-xl">
@@ -191,7 +191,7 @@ const Quiz = ({ data }) => {
                   className="flex flex-col max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:mt-8"
                   onSubmit={(e) => handleSubmit(e)}
                 >
-                  <ul className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
+                  <menu className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
                     {question?.options.map((option, optionIndex) => (
                       <label
                         className="cursor-pointer"
@@ -275,7 +275,7 @@ const Quiz = ({ data }) => {
                         </li>
                       </label>
                     ))}
-                  </ul>
+                  </menu>
                   {!isAnswerSubmitted ? (
                     <button className="btn hover:bg-[#d394fa] max-md:h-[56px] h-[92px] w-full rounded-[24px] text-xl text-white border-none bg-nav">
                       Submit Answer
