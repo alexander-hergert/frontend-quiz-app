@@ -56,7 +56,7 @@ const QuizButtons = () => {
               {link.map((link, index) => {
                 if (page === 1 && index < 4) {
                   return <QuizButton key={index} link={link} />;
-                } else if (page === 2 && index >= 4) {
+                } else if (page === 2 && index >= 4 && index < 8) {
                   return <QuizButton key={index} link={link} />;
                 }
               })}
@@ -65,13 +65,20 @@ const QuizButtons = () => {
           {isMixMode === "true" && (
             <MixButton selectedTopics={selectedTopics} />
           )}
-          <button
-            onClick={() => setPage(page === 1 ? 2 : 1)}
-            className="btn relative mt-4 bg-primary border-0 text-neutral hover:bg-primary"
-            disabled={isMixMode === "true"}
-          >
-            Switch page
-          </button>
+          <div className="flex items-center mt-4 gap-4">
+            <button
+              onClick={() => setPage(page === 1 ? 2 : 1)}
+              className="btn bg-primary border-0 text-neutral hover:bg-primary"
+              disabled={isMixMode === "true"}
+            >
+              Switch page
+            </button>
+            {selectedTopics.length === 0 && (
+              <p arial-label="error" className="text-red-500">
+                Please select at least one Topic.
+              </p>
+            )}
+          </div>
         </article>
       )}
     </>
