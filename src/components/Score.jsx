@@ -4,23 +4,17 @@ import Link from "next/link";
 
 const Score = ({ score, icon, title, numberOfQuestions }) => {
   let bgColor = "";
-  if (title === "HTML") {
-    bgColor = "bg-html";
-  } else if (title === "CSS") {
-    bgColor = "bg-css";
-  } else if (title === "JavaScript") {
-    bgColor = "bg-js";
-  } else if (title === "Accessibility") {
-    bgColor = "bg-accessibility";
-  } else if (title === "React") {
-    bgColor = "bg-react";
-  } else if (title === "Node.js") {
-    bgColor = "bg-nodejs";
-  } else if (title === "SQL") {
-    bgColor = "bg-sql";
-  } else if (title === "Git / Bash") {
-    bgColor = "bg-git";
-  }
+
+  bgColor = [
+    { name: "HTML", color: "bg-html" },
+    { name: "CSS", color: "bg-css" },
+    { name: "JavaScript", color: "bg-js" },
+    { name: "Accessibility", color: "bg-accessibility" },
+    { name: "React", color: "bg-react" },
+    { name: "Node.js", color: "bg-nodejs" },
+    { name: "SQL", color: "bg-sql" },
+    { name: "Git / Bash", color: "bg-git" },
+  ].filter((topic) => topic.name === title)[0]?.color;
 
   const [isClient, setIsClient] = useState(false);
 
@@ -40,20 +34,31 @@ const Score = ({ score, icon, title, numberOfQuestions }) => {
         <div className="flex flex-col justify-center md:w-[640px] xl:w-[564px] items-center bg-primary max-md:rounded-[12px] md:rounded-[24px] h-[388px]">
           <div className="flex items-center h-[56px] gap-[24px]">
             <div
+              data-testid="background"
               className={`w-[56px] h-[56px] flex justify-center items-center ${bgColor} rounded`}
             >
-              <img src={icon} alt="topic" className="w-[40px] h-[40px]" />
+              <img
+                data-testid="icon"
+                src={icon}
+                alt="topic"
+                className="w-[40px] h-[40px]"
+              />
             </div>
-            <h2 className="text-2xl">{title}</h2>
+            <h2 data-testid="title" className="text-2xl">
+              {title}
+            </h2>
           </div>
           <div className="h-[196px]">
-            <p className="text-[6rem]">{score}</p>
-            <p className="text-accent">
+            <p data-testid="score" className="text-[6rem]">
+              {score}
+            </p>
+            <p data-testid="numberofquestions" className="text-accent">
               out of {isClient ? numberOfQuestions : ""}
             </p>
           </div>
         </div>
         <Link
+          data-testid="link"
           href={"/"}
           className="btn max-md:h-[56px] h-[92px] w-full max-md:rounded-[12px] xl:rounded-[24px] text-xl
            text-white border-none bg-nav hover:bg-[#d394fa]"

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Score renders unchanged 1`] = `
+<div>
+  <section
+    class="flex justify-between max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-col xl:w-[1160px] max-md:h-[457px]  md:h-[638px] xl:h-[456px] max-md:gap-[40px] md:gap-[64px] xl:gap-[140px]"
+  >
+    <h1
+      class="max-xl:text-[2rem] xl:text-[3rem] max-md:h-[88px] xl:h-[136px] w-full"
+    >
+      Quiz completed, You scored...
+    </h1>
+    <div
+      class="flex flex-col gap-[32px] h-[512px]"
+    >
+      <div
+        class="flex flex-col justify-center md:w-[640px] xl:w-[564px] items-center bg-primary max-md:rounded-[12px] md:rounded-[24px] h-[388px]"
+      >
+        <div
+          class="flex items-center h-[56px] gap-[24px]"
+        >
+          <div
+            class="w-[56px] h-[56px] flex justify-center items-center bg-html rounded"
+            data-testid="background"
+          >
+            <img
+              alt="topic"
+              class="w-[40px] h-[40px]"
+              data-testid="icon"
+              src="/assets/images/icon-html.svg"
+            />
+          </div>
+          <h2
+            class="text-2xl"
+            data-testid="title"
+          >
+            HTML
+          </h2>
+        </div>
+        <div
+          class="h-[196px]"
+        >
+          <p
+            class="text-[6rem]"
+            data-testid="score"
+          >
+            0
+          </p>
+          <p
+            class="text-accent"
+            data-testid="numberofquestions"
+          >
+            out of 
+            10
+          </p>
+        </div>
+      </div>
+      <a
+        class="btn max-md:h-[56px] h-[92px] w-full max-md:rounded-[12px] xl:rounded-[24px] text-xl text-white border-none bg-nav hover:bg-[#d394fa]"
+        data-testid="link"
+        href="/"
+      >
+        Play Again
+      </a>
+    </div>
+  </section>
+</div>
+`;
