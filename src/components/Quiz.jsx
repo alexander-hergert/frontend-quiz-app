@@ -73,7 +73,7 @@ const Quiz = ({ data }) => {
     }
     if (pathname === "/mix" || link.some((item) => item.path === pathname)) {
       console.log("valid path");
-      if (selectedTopics.length === 0) {
+      if (selectedTopics.length === 0 && isMixMode === "true") {
         router.push("/");
       }
     } else {

@@ -6,6 +6,8 @@ export const GlobalContextProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        theme,
+        setTheme,
         isShuffle,
         setIsShuffle,
         numberOfQuestions,

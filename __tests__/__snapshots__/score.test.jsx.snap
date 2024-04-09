@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Score renders unchanged 1`] = `
+exports[`Score Component Rendering renders unchanged 1`] = `
 <div>
   <section
     class="flex justify-between max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-col xl:w-[1160px] max-md:h-[457px]  md:h-[638px] xl:h-[456px] max-md:gap-[40px] md:gap-[64px] xl:gap-[140px]"

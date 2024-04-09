@@ -1,7 +1,7 @@
 "use client";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GlobalContext from "@/context/globalContext";
 
 const metadata = {
@@ -10,6 +10,12 @@ const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   let htmlElement;
   let shuffle = false;
   let number = 10;
@@ -51,11 +57,17 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`flex flex-col justify-center items-center min-h-[100vh]
-        ${theme === "dark" ? "d-bg-d t-bg-d m-bg-d" : "d-bg-l t-bg-l m-bg-l"}
+        ${
+          isClient && theme === "dark"
+            ? "d-bg-d t-bg-d m-bg-d"
+            : "d-bg-l t-bg-l m-bg-l"
+        }
       `}
       >
         <GlobalContext.Provider
           value={{
+            theme,
+            setTheme,
             isShuffle,
             setIsShuffle,
             numberOfQuestions,
@@ -68,7 +80,7 @@ export default function RootLayout({ children }) {
             setSelectedTopics,
           }}
         >
-          <Navbar theme={theme} setTheme={setTheme} />
+          <Navbar />
           <main className="min-h-[100vh] max-xl:mb-12">{children}</main>
         </GlobalContext.Provider>
       </body>
