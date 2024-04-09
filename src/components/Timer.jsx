@@ -15,27 +15,36 @@ const Timer = ({ setCurrentQuestion }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-      }
       if (seconds === 0) {
         if (minutes === 0) {
           setCurrentQuestion(numberOfQuestions + 1);
         } else {
-          setMinutes(minutes - 1);
+          setMinutes((prev) => prev - 1);
           setSeconds(59);
         }
+      }
+      if (seconds > 0) {
+        setSeconds((prev) => prev - 1);
       }
     }, [1000]);
     return () => clearInterval(timer);
   }, [seconds, minutes]);
 
   return (
-    <span className="countdown font-mono text-2xl absolute top-4 left-4 bg-info rounded p-1 max-md:text-xl max-md:flex-col items-center">
+    <span
+      data-testid="timer"
+      className="countdown font-mono text-2xl absolute top-4 left-4 bg-info rounded p-1 max-md:text-xl max-md:flex-col items-center"
+    >
       {isClient && (
         <>
-          <span style={{ "--value": minutes }}>{minutes}</span>m
-          <span style={{ "--value": seconds }}>{seconds}</span>s
+          <span data-testid="minutes" style={{ "--value": minutes }}>
+            {minutes}
+          </span>
+          m
+          <span data-testid="seconds" style={{ "--value": seconds }}>
+            {seconds}
+          </span>
+          s
         </>
       )}
     </span>
