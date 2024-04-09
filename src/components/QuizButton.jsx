@@ -9,6 +9,7 @@ const QuizButton = ({ link }) => {
 
   return (
     <div
+      role="quiz-button"
       onClick={() => router.push(link?.path, { scroll: false })}
       className="bg-primary px-[20px] w-full max-md:h-[64px] md:h-[80px] h-[96px] max-xl:rounded-[12px] xl:rounded-[24px] flex gap-4 items-center cursor-pointer"
     >
