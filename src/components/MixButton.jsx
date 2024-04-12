@@ -23,7 +23,7 @@ const MixButton = ({ selectedTopics }) => {
       }}
       className="justify-center max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:h-[292px] h-[392px] bg-primary px-[20px] w-full max-xl:rounded-[12px] xl:rounded-[24px] flex gap-4 items-center cursor-pointer"
     >
-      <article className="relative rotate-right">
+      <article data-testid="mix-button" className="relative rotate-right">
         <div
           className={`rotate-left ${link[0].color} top-[-120px] left-[-20px] absolute max-md:w-[40px] max-md:h-[40px] w-[56px] h-[56px] flex items-center justify-center rounded-[8px]`}
         >

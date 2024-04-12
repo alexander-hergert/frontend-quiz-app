@@ -39,7 +39,6 @@ const QuizButtons = () => {
   const [page, setPage] = useState(1);
   const { isMixMode, selectedTopics } = useContext(GlobalContext);
   const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -47,7 +46,7 @@ const QuizButtons = () => {
   return (
     <>
       {isClient && (
-        <article>
+        <article data-testid="quiz-buttons">
           {isMixMode === "false" && (
             <aside
               className="max-md:w-[327px] md:w-[640px] xl:w-[564px] max-md:h-[292px] flex flex-col gap-[24px] 
@@ -67,6 +66,7 @@ const QuizButtons = () => {
           )}
           <div className="flex items-center mt-4 gap-4">
             <button
+              data-testid="switch-button"
               onClick={() => setPage(page === 1 ? 2 : 1)}
               className="btn bg-primary border-0 text-neutral hover:bg-primary"
               disabled={isMixMode === "true"}
