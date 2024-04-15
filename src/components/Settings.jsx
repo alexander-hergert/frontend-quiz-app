@@ -24,7 +24,10 @@ const Settings = () => {
   } = useContext(GlobalContext);
 
   return (
-    <section className="text-accent flex flex-col justify-center items-center settings mt-20">
+    <section
+      data-testid="settings"
+      className="text-accent flex flex-col justify-center items-center settings mt-20"
+    >
       <h1 className="text-2xl">Settings</h1>
       <div className="flex justify-between gap-4 mt-4 w-[327px]">
         <label htmlFor="shuffle">Shuffle mode</label>
@@ -34,6 +37,7 @@ const Settings = () => {
             role="checkbox"
             aria-label="shuffle mode"
             id="shuffle"
+            data-testid="shuffle"
             onChange={() => {
               setIsShuffle(isShuffle === "true" ? "false" : "true");
               localStorage.setItem(
@@ -43,9 +47,7 @@ const Settings = () => {
             }}
             type="checkbox"
             className="w-[48px] h-[28px] border-none cursor-pointer"
-            checked={
-              isShuffle === "true" || isMixMode === "true" ? true : false
-            }
+            checked={isShuffle === "true" || isMixMode === "true"}
           />
           <span>On</span>
         </div>
@@ -55,6 +57,7 @@ const Settings = () => {
         <div id="number" className="flex items-center gap-2 w-[7rem]">
           <fieldset className="number-of-questions">
             <input
+              data-testid="number-of-questions-10"
               role="radio"
               aria-label="10 questions"
               onChange={() => {
@@ -69,6 +72,7 @@ const Settings = () => {
               checked={numberOfQuestions === 10}
             />
             <input
+              data-testid="number-of-questions-20"
               role="radio"
               aria-label="20 questions"
               onChange={() => {
@@ -83,6 +87,7 @@ const Settings = () => {
               checked={numberOfQuestions === 20}
             />
             <input
+              data-testid="number-of-questions-30"
               role="radio"
               aria-label="30 questions"
               onChange={() => {
@@ -97,7 +102,10 @@ const Settings = () => {
               checked={numberOfQuestions === 30}
             />
           </fieldset>
-          <span className="text-accent w-[20px]">
+          <span
+            data-testid="label-number-of-questions"
+            className="text-accent w-[20px]"
+          >
             {isClient ? numberOfQuestions : ""}
           </span>
         </div>
@@ -107,6 +115,7 @@ const Settings = () => {
         <div className="flex items-center gap-2 w-[7rem]">
           <span>Off</span>
           <input
+            data-testid="exam"
             role="checkbox"
             aria-label="exam mode"
             id="exam"
@@ -129,6 +138,7 @@ const Settings = () => {
         <div className="flex items-center gap-2 w-[7rem]">
           <span>Off</span>
           <input
+            data-testid="mix-mode"
             role="checkbox"
             aria-label="mix mode"
             id="mix"
