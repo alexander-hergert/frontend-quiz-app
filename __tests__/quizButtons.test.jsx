@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import GlobalContext from "../src/context/globalContext";
 import QuizButtons from "../src/components/QuizButtons";
-import { useRouter } from "next/navigation";
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
