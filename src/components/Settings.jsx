@@ -182,6 +182,7 @@ const Settings = () => {
                       name={link.text}
                       role="checkbox"
                       aria-label={link.text}
+                      data-testid={link.text}
                       id={link.text}
                       type="checkbox"
                       className="appearance-none mt-4 cursor-pointer"
