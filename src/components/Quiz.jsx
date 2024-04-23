@@ -157,6 +157,7 @@ const Quiz = ({ data }) => {
 
   return (
     <section
+      data-testid="quiz"
       className={`${
         isExam === "true" && isClient ? "select-none" : ""
       } flex max-md:my-4 max-md:w-[327px] md:w-[640px] max-xl:flex-wrap xl:w-[1160px] md:gap-[64px] 
@@ -202,6 +203,7 @@ const Quiz = ({ data }) => {
                         key={optionIndex}
                       >
                         <li
+                          data-testid={`question-${index}-${optionIndex}`}
                           onClick={() => {
                             if (isAnswerSubmitted) return;
                             setAnswerIndex(optionIndex);
