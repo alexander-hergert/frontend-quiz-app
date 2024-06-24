@@ -39,8 +39,8 @@ const Quiz = ({ data }) => {
           data?.quizzes?.[index].questions,
           isShuffle,
           numberOfQuestions
-        ).map((question) => {
-          const shuffledOptions = shuffleArray(question.options, isShuffle, 4);
+        )?.map((question) => {
+          const shuffledOptions = shuffleArray(question?.options, isShuffle, 4);
           return { ...question, options: shuffledOptions };
         });
         setQuestions(shuffledArray);
@@ -51,14 +51,14 @@ const Quiz = ({ data }) => {
       if (pathname === "/mix") {
         if (isMixMode === "true") {
           const newArrayOfQuestions = [];
-          for (let i = 0; i < data?.quizzes.length; i++) {
+          for (let i = 0; i < data?.quizzes?.length; i++) {
             if (selectedTopics.includes(data?.quizzes[i].title)) {
               newArrayOfQuestions.push(data?.quizzes[i].questions);
             }
           }
           const joinedArray = newArrayOfQuestions.flat();
           const shuffledArray = shuffleArray(
-            shuffleArray(joinedArray, "true", numberOfQuestions).map(
+            shuffleArray(joinedArray, "true", numberOfQuestions)?.map(
               (question) => {
                 const shuffledOptions = shuffleArray(question.options, "true");
                 return { ...question, options: shuffledOptions };
@@ -73,7 +73,7 @@ const Quiz = ({ data }) => {
     }
     if (pathname === "/mix" || link.some((item) => item.path === pathname)) {
       console.log("valid path");
-      if (selectedTopics.length === 0 && isMixMode === "true") {
+      if (selectedTopics?.length === 0 && isMixMode === "true") {
         router.push("/");
       }
     } else {
@@ -92,7 +92,7 @@ const Quiz = ({ data }) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    if (questions.length > 0) {
+    if (questions?.length > 0) {
       setCorrectAnswer(questions[currentQuestion - 1]?.answer);
     }
   }, [questions, currentQuestion]);
@@ -150,7 +150,7 @@ const Quiz = ({ data }) => {
     setCurrentQuestion(currentQuestion + 1);
     //scroll to top
     window.scrollTo(0, 0);
-    if (currentQuestion < questions.length) {
+    if (currentQuestion < questions?.length) {
       setCorrectAnswer(questions[currentQuestion].answer);
     }
   };
@@ -168,8 +168,8 @@ const Quiz = ({ data }) => {
         currentQuestion <= numberOfQuestions && (
           <Timer setCurrentQuestion={setCurrentQuestion} />
         )}
-      {currentQuestion <= questions.length &&
-        questions.map(
+      {currentQuestion <= questions?.length &&
+        questions?.map(
           (question, index) =>
             currentQuestion === index + 1 && (
               <article
@@ -179,7 +179,7 @@ const Quiz = ({ data }) => {
                 <div className="flex flex-col xl:justify-between md:w-[640px] xl:w-[465px] gap-[40px]">
                   <div className="flex flex-col">
                     <p className="text-accent mb-[27px] text-xl">
-                      Question {currentQuestion} of {questions.length}
+                      Question {currentQuestion} of {questions?.length}
                     </p>
                     <p className="text-[2rem] max-md:text-xl">
                       {question?.question}
@@ -188,7 +188,7 @@ const Quiz = ({ data }) => {
                   <progress
                     className="max-md:mt-4 progress progress-info border-4 bg-primary border-primary max-md:w-[327px] md:w-[640px] xl:w-[465px] h-[16px]"
                     value={currentQuestion - 1}
-                    max={questions.length - 1}
+                    max={questions?.length - 1}
                   ></progress>
                 </div>
                 <form
@@ -196,7 +196,7 @@ const Quiz = ({ data }) => {
                   onSubmit={(e) => handleSubmit(e)}
                 >
                   <menu className="flex flex-col gap-[24px] max-md:w-[327px] md:w-[640px] xl:w-[564px] mb-[32px]">
-                    {question?.options.map((option, optionIndex) => (
+                    {question?.options?.map((option, optionIndex) => (
                       <label
                         className="cursor-pointer"
                         htmlFor={`question-${index}-${optionIndex}`}
@@ -304,7 +304,7 @@ const Quiz = ({ data }) => {
               </article>
             )
         )}
-      {currentQuestion > questions.length && (
+      {currentQuestion > questions?.length && (
         <Score
           score={score}
           icon={icon}

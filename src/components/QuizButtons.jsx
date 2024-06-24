@@ -73,7 +73,7 @@ const QuizButtons = () => {
             >
               Switch page
             </button>
-            {selectedTopics.length === 0 && (
+            {selectedTopics.length === 0 && isMixMode === "true" && (
               <p arial-label="error" className="text-red-500">
                 Please select at least one Topic.
               </p>
