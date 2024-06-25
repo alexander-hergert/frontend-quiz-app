@@ -1,9 +1,14 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import GlobalContext from "@/context/globalContext";
 import Link from "next/link";
+import mixIcon from "/public/assets/images/icon-mix.svg";
+import Image from "next/image";
 
 const Score = ({ score, icon, title, numberOfQuestions }) => {
   let bgColor = "";
+
+  const { isMixMode } = useContext(GlobalContext);
 
   bgColor = [
     { name: "HTML", color: "bg-html" },
@@ -35,17 +40,21 @@ const Score = ({ score, icon, title, numberOfQuestions }) => {
           <div className="flex items-center h-[56px] gap-[24px]">
             <div
               data-testid="background"
-              className={`w-[56px] h-[56px] flex justify-center items-center ${bgColor} rounded`}
+              className={`w-[56px] h-[56px] flex justify-center items-center ${
+                isMixMode === "true" ? "bg-mix" : bgColor
+              } rounded`}
             >
-              <img
+              <Image
                 data-testid="icon"
-                src={icon}
+                src={isMixMode === "true" ? mixIcon : icon}
+                width={40}
+                height={40}
                 alt="topic"
                 className="w-[40px] h-[40px]"
               />
             </div>
             <h2 data-testid="title" className="text-2xl">
-              {title}
+              {isClient && isMixMode === "true" ? "Mix" : title}
             </h2>
           </div>
           <div className="h-[196px]">
